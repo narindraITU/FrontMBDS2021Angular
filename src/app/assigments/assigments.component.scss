@@ -1,0 +1,25 @@
+
+.liste-item{
+  width: 100%;
+  cursor: pointer;
+  display:flex;
+  flex-direction: column;
+  padding: 15px;
+  transition: .3s;
+  &:hover{
+    background: deepskyblue;
+    color:white !important;
+    font-weight: bold;
+  }
+}
+.ajouterBtn{
+  padding: 15px;
+}
+a{
+  text-decoration: none;
+}
+
+.example-viewport {
+  height: 600px;
+  border: 1px solid black;
+}

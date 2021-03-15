@@ -1,0 +1,45 @@
+<main>
+  <mat-card>
+    <div class="main-view">
+      <h1 style="width:100%;text-align: center;">Inscrivez-vous</h1>
+      <mat-form-field style="margin-bottom: 20px;" appearance="outline">
+        <mat-label>Login </mat-label>
+        <input matInput #nomAssignment
+               name="nom"
+               placeholder="Nom"
+               required
+               [(ngModel)]="login" />
+      </mat-form-field>
+      <mat-form-field style="margin-bottom: 20px;" appearance="outline">
+        <mat-label>Mot de passe </mat-label>
+        <input matInput #nomAssignment
+               name="nom"
+               required
+               type="password"
+               placeholder="Mot de passe"
+               [(ngModel)]="password" />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Type d'utilisateur</mat-label>
+        <select matNativeControl [(ngModel)]="isAdmin" required>
+          <option value=false>Utilisateur normal</option>
+          <option value=true>Administrateur</option>
+        </select>
+      </mat-form-field>
+      <button [disabled]="!validated()"
+              mat-stroked-button
+              color="accent"
+              style="width: 100%;"
+              (click)="inscription()">
+        Inscription
+      </button>
+      <button
+        mat-raised-button
+        color="primary"
+        style="width: 100%;margin-top: 1rem"
+        (click)="connect()">
+        Connexion
+      </button>
+    </div>
+  </mat-card>
+</main>
