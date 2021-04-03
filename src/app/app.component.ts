@@ -1,10 +1,11 @@
-import {Component, NgZone, OnInit} from '@angular/core';
+import {Component, NgZone, OnInit, ViewChild} from '@angular/core';
 import {AuthService} from "./shared/auth.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
 import {AssignmentsService} from "./shared/assignments.service";
 import {MessagingService} from "./shared/messaging.service";
 import {UserModel} from "./auth/login/user.model";
+import {MatDrawer} from "@angular/material/sidenav";
 
 @Component({
   selector: 'app-root',
@@ -15,7 +16,7 @@ export class AppComponent implements OnInit{
     title = 'Assignments by Mathias - 53 et Narindra - 41';
     currentUser: UserModel = null;
     isMenuShown: boolean = false;
-
+    @ViewChild('drawer',{static: false}) drawer: MatDrawer = null;
     constructor(private readonly authService: AuthService,
                 private readonly router: Router,
                 private readonly activeRoute: ActivatedRoute,
