@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {MessagingService} from '../../shared/messaging.service';
-import {AuthService} from '../../shared/auth.service';
+import {MessagingService} from '../../shared/Others/messaging.service';
+import {AuthService} from '../../shared/HttpServices/auth.service';
 import {catchError, mergeMap} from "rxjs/operators";
 
 @Component({
@@ -33,6 +33,7 @@ export class RegisterComponent implements OnInit {
         return this.authService.me();
       }),
       catchError(error => {
+        spinner.close();
         throw error;
       })
     ).subscribe(data => {

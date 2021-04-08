@@ -1,10 +1,10 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {AssignmentModel} from "../assignment.model";
 import {Observable} from "rxjs";
-import {AssignmentsService} from "../../shared/assignments.service";
+import {AssignmentsService} from "../../shared/HttpServices/assignments.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {AuthService} from "../../shared/auth.service";
-import {MessagingService} from "../../shared/messaging.service";
+import {AuthService} from "../../shared/HttpServices/auth.service";
+import {MessagingService} from "../../shared/Others/messaging.service";
 
 @Component({
   selector: 'app-assignment-detail',

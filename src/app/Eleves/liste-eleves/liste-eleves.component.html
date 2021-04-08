@@ -1,0 +1,67 @@
+<div class="main">
+  <mat-card>
+      <h1>Gestion des élèves</h1>
+    <div>
+      <table border="1" style="border-collapse: collapse" >
+        <thead>
+        <tr>
+          <td style="padding:5px;">
+            <mat-form-field class="field" appearance="outline">
+              <input matInput
+                     name="nom"
+                     [(ngModel)]="nom"
+                     placeholder="Nom"
+                     required />
+            </mat-form-field>
+          </td>
+          <td style="padding:5px;">
+            <mat-form-field class="field" appearance="outline">
+              <input matInput
+                     name="prenom"
+                     [(ngModel)]="prenom"
+                     placeholder="Prénom"
+                     required />
+            </mat-form-field>
+          </td>
+          <td>
+            <div class="icon-container">
+              <mat-icon
+                (click)="createUser()"
+                style="color:blue;"
+                [ngClass]="{'disabled': this.nom === '' || this.prenom === ''}">add_task</mat-icon>
+            </div>
+          </td>
+        </tr>
+        <tr>
+            <th style="background: cornflowerblue;">Nom</th>
+            <th style="background: cornflowerblue">Prénom</th>
+            <th style="background: lightskyblue"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let eleve of liste">
+            <td style="padding: 15px 5px;text-align: center;">
+                {{eleve.nom}}
+            </td>
+            <td style="padding: 5px;text-align: center;">
+                {{eleve.prenom}}
+            </td>
+            <td>
+              <div class="toolbox">
+                <mat-icon (click)="delete(eleve._id)">delete</mat-icon>
+                <mat-icon (click)="edit(eleve)">mode_edit</mat-icon>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="paginator-container">
+        <mat-paginator
+          (page)="updatePage($event)"
+          [length]="totalDocs"
+          [pageSize]="10">
+        </mat-paginator>
+      </div>
+    </div>
+  </mat-card>
+</div>

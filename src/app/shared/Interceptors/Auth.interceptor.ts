@@ -2,7 +2,7 @@ import {Injectable, Injector} from '@angular/core';
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import {AuthService} from "./auth.service";
+import {AuthService} from "../HttpServices/auth.service";
 import {Router} from "@angular/router";
 
 @Injectable({
@@ -19,6 +19,9 @@ export class AuthInterceptor implements HttpInterceptor {
           this.router.navigate(['/auth','login']);
         }
         const error = err?.error?.message || err?.statusText || 'Une erreur est survenue';
+        document.querySelectorAll('.cdk-overlay-pane').forEach(value => {
+          value.remove();
+        });
         return throwError(error);
       }))
   }

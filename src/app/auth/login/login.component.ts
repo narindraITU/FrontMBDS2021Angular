@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialogRef} from '@angular/material/dialog';
-import {AuthService} from '../../shared/auth.service';
+import {AuthService} from '../../shared/HttpServices/auth.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import {MessagingService} from '../../shared/messaging.service';
+import {MessagingService} from '../../shared/Others/messaging.service';
 import {Router} from '@angular/router';
 import {catchError, mergeMap} from "rxjs/operators";
 
@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
         return this.authService.me();
       }),
       catchError(error => {
+        spinner.close();
         throw error;
       })
     ).subscribe(data => {

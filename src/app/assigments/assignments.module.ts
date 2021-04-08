@@ -7,6 +7,7 @@ import {AssignmentsRoutingModule} from "./assignments-routing.module";
 import {AddAssignmentComponent} from "./add-assignment/add-assignment.component";
 import {FormsModule} from "@angular/forms";
 import {CommonModule, DatePipe} from "@angular/common";
+import { SingleAssignmentComponent } from './single-assignment/single-assignment.component';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import {CommonModule, DatePipe} from "@angular/common";
     AssigmentsComponent,
     EditAssignmentComponent,
     AddAssignmentComponent,
+    SingleAssignmentComponent,
   ],
 })
 export class AssignmentsModule {

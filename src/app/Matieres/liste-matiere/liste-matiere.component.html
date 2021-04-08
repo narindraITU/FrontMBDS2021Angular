@@ -1,0 +1,102 @@
+<div class="body" style="padding: 15px;">
+  <h1>Gestion des matières</h1>
+  <mat-card style="margin-bottom: 15px;">
+    <h3>Ajouter une nouvelle matière</h3>
+    <form [formGroup]="formulaire" style="width:100%">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="picker-container">
+          <ngp-image-picker
+            [ngClass]="{'hasError': formulaire.controls.image.errors?.required}"
+            #imagepicker
+            [_config]="imagePickerConf"
+            ($imageChanged)="onImageChange($event)"
+          >
+          </ngp-image-picker>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div class="row">
+            <div class="col-md-12">
+              <mat-form-field>
+                <mat-label>Nom du professeur : </mat-label>
+                <input matInput
+                       formControlName="nomProf"
+                       name="prof"
+                       placeholder="Professeur" />
+              </mat-form-field>
+              <p class="error-message" *ngIf="formulaire.controls.nomProf.errors?.required">
+                Ce champ est requis
+              </p>
+            </div>
+            <div class="col-md-12">
+              <mat-form-field>
+                <mat-label>Nom de la matière : </mat-label>
+                <input matInput
+                       formControlName="nomMatiere"
+                       name="matiere"
+                       placeholder="Matière" />
+              </mat-form-field>
+              <p class="error-message" *ngIf="formulaire.controls.nomMatiere.errors?.required">
+                Ce champ est requis
+              </p>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="round-button">
+                    <mat-icon>
+                      {{formulaire.controls.icone.value}}
+                    </mat-icon>
+                  </div>
+                  <input style="align-self: stretch;width: 100%;"
+                         [ipFallbackIcon]="'warning'"
+                         [value]="formulaire.controls.icone.value"
+                         [iconPicker]="formulaire.controls.icone.value"
+                         [ipPosition]="'bottom'"
+                         [ipWidth]="'250px'"
+                         [ipIconSize]="'25px'"
+                         [ipIconVerticalPadding]="'6px'"
+                         [ipIconPack]="['mat']"
+                         [ipIconHorizontalPadding]="'10px'"
+                         [ipKeepSearchFilter]="'false'"
+                         [ipPlaceHolder]="'Choisissez une icone'"
+                         (iconPickerSelect)="onIconPickerSelect($event)" />
+                </div>
+                <p class="error-message" style="margin-top: 15px;" *ngIf="formulaire.controls.icone.errors?.required">
+                  L'icone est requise
+                </p>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <button type="button"
+                      style="width: 100%;margin-top: 20px;"
+                      mat-flat-button
+                      [disabled]="!formulaire.valid"
+                      color="primary"
+                      (click)="submit()">Créer</button>
+            </div>
+            <div class="col-md-12">
+              <button type="button"
+                      style="width: 100%;margin-top: 20px;"
+                      mat-flat-button
+                      color="accent"
+                      (click)="reset()" >Restaurer</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </form>
+  </mat-card>
+  <mat-card>
+    <h3>Liste des matières</h3>
+    <div class="row" style="background: #F7F7F7;">
+        <div class="col-md-6" *ngFor="let item of liste">
+          <app-single-matiere-component
+            (onEdit)="edit($event)"
+            (onDelete)="delete($event)" [matiere]="item"></app-single-matiere-component>
+        </div>
+    </div>
+  </mat-card>
+</div>

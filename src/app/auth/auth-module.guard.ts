@@ -8,7 +8,7 @@ import {
   RouterStateSnapshot,
   UrlSegment
 } from '@angular/router';
-import {AuthService} from "../shared/auth.service";
+import {AuthService} from "../shared/HttpServices/auth.service";
 
 @Injectable({providedIn: 'root'})
 export class AuthModuleGuard implements CanLoad {

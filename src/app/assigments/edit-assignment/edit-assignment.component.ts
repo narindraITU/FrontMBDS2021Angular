@@ -1,8 +1,8 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {AssignmentModel} from "../assignment.model";
-import {AssignmentsService} from "../../shared/assignments.service";
+import {AssignmentsService} from "../../shared/HttpServices/assignments.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {MessagingService} from "../../shared/messaging.service";
+import {MessagingService} from "../../shared/Others/messaging.service";
 
 @Component({
   selector: 'app-edit-assignment',

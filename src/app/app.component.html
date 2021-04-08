@@ -11,16 +11,24 @@
         ({{currentUser.isAdmin ? 'Administrateur' : 'Simple utilisateur'}})
       </span>
     </div>
-    <div class="drawer-item">
-      <mat-icon></mat-icon>
-      <span>Vos élèves</span>
+    <div class="drawer-item" [ngClass]="{'active': this.router.url === '/main/home'}" (click)="goTo(['main','home'])">
+      <mat-icon [matBadge]="currentCounts ? currentCounts.assignments : 0" matBadgePosition="after" matBadgeColor="primary">home</mat-icon>
+      <span >Accueil</span>
     </div>
-    <div class="drawer-item">
-      <mat-icon></mat-icon>
-      <span>Vos matières</span>
+    <div class="drawer-item" [ngClass]="{'active': this.router.url.startsWith('/eleves')}" (click)="goTo(['eleves','main'])">
+      <mat-icon [matBadge]="currentCounts ? currentCounts.eleves : 0" matBadgePosition="after" matBadgeColor="primary" >face</mat-icon>
+      <span >Vos élèves</span>
+    </div>
+    <div class="drawer-item" [ngClass]="{'active': this.router.url.startsWith('/matieres')}" (click)="goTo(['matieres','main'])">
+      <mat-icon [matBadge]="currentCounts ? currentCounts.matieres : 0" matBadgePosition="after" matBadgeColor="primary" >app_registration</mat-icon>
+      <span >Vos matières</span>
+    </div>
+    <div class="drawer-item" [ngClass]="{'active': this.router.url.startsWith('/dashboard')}" (click)="goTo(['dashboard','main'])">
+      <mat-icon>assessment</mat-icon>
+      <span>Tableau de bord</span>
     </div>
     <div class="drawer-item" (click)="disconnect()">
-      <mat-icon>shutdown</mat-icon>
+      <mat-icon>close</mat-icon>
       <span>Déconnexion</span>
     </div>
   </mat-drawer>

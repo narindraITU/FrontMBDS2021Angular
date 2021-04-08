@@ -5,18 +5,18 @@
     </a>
   </div>
   <cdk-virtual-scroll-viewport itemSize="50" class="example-viewport" #scroller>
-    <mat-card>
     <ng-container *cdkVirtualFor="let assignment of assignments">
+      <mat-card>
       <mat-card-title>{{assignment.dateDeRendu | date}}</mat-card-title>
       <mat-card-subtitle>Narindra RANDRIANARISOA</mat-card-subtitle>
       <div class="image-item">
         <img mat-card-image src="https://angular.io/assets/images/logos/angular/angular.svg" alt="Angular mat">
         <img mat-card-image src="https://image.freepik.com/vecteurs-libre/vecteur-icone-homme-affaires_52756-255.jpg" alt="Angular mat">
-      </div>      
+      </div>
       <nav>
           <a routerLink="/main/assignment/{{assignment._id}}">
             <mat-list-item>
-              <div class="liste-item">               
+              <div class="liste-item">
                 <h3 appRendu *ngIf="assignment.rendu; else nonsoumis" >
                   Devoir intitulé {{assignment.nom}}
                 </h3>
@@ -28,7 +28,7 @@
             </mat-list-item>
           </a>
         </nav>
+      </mat-card>
     </ng-container>
-    </mat-card>
   </cdk-virtual-scroll-viewport>
 </main>

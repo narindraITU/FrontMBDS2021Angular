@@ -4,7 +4,7 @@ import {AssigmentsComponent} from "./assigments.component";
 import {AddAssignmentComponent} from "./add-assignment/add-assignment.component";
 import {AssignmentDetailComponent} from "./assignment-detail/assignment-detail.component";
 import {EditAssignmentComponent} from "./edit-assignment/edit-assignment.component";
-import {AdminGuard} from "../shared/admin.guard";
+import {AdminGuard} from "../shared/Guards/admin.guard";
 
 const routes: Route[] = [
   {

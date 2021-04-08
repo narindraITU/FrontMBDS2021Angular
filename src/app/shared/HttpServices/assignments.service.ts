@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import {AssignmentModel} from '../assigments/assignment.model';
+import {AssignmentModel} from '../../assigments/assignment.model';
 import {forkJoin, Observable, of} from 'rxjs';
-import {LoggingService} from './logging.service';
+import {LoggingService} from '../Others/logging.service';
 import {HttpClient} from '@angular/common/http';
-import {data} from './data';
-import {Configurations} from '../Configurations/configurations';
+import {data} from '../data';
+import {Configurations} from '../../Configurations/configurations';
 
 @Injectable({
   providedIn: 'root'

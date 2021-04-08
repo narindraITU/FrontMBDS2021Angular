@@ -37,10 +37,17 @@ mat-toolbar-row{
 .sidenav{
   min-width: 15vw;
   .drawer-item{
+    cursor:pointer;
     display: flex;
     justify-content: space-between;
     padding: 10px 5px;
     border-bottom: 1px solid silver;
+    transition: all .3s;
+  }
+  .drawer-item.active{
+    background: dodgerblue;
+    color: white;
+    font-weight: bold;
   }
 }
 .top-image-profile{

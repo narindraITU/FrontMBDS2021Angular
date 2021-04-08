@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {MatSnackBar, MatSnackBarRef, SimpleSnackBar} from "@angular/material/snack-bar";
 import {MatDialog, MatDialogRef} from "@angular/material/dialog";
-import {SpinnerComponent} from "../BaseComponents/Spinner/SpinnerComponent";
+import {SpinnerComponent} from "../../BaseComponents/Spinner/SpinnerComponent";
 
 @Injectable({
   providedIn: 'root'

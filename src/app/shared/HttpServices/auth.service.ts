@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
-import {UserModel} from '../auth/login/user.model';
+import {UserModel} from '../../auth/login/user.model';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {BehaviorSubject, Observable} from 'rxjs';
-import {Configurations} from '../Configurations/configurations';
+import {Configurations} from '../../Configurations/configurations';
 
 @Injectable({
   providedIn: 'root',
