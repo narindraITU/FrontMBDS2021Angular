@@ -1,0 +1,48 @@
+mat-form-field{
+  width: 100%;
+}
+.picker-container{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.form-group{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  .input-group{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+}
+.round-button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: dodgerblue;
+  color: white;
+  box-shadow: 0 1px 1px rgba(0,0,0,0.15),
+  0 2px 2px rgba(0,0,0,0.15),
+  0 4px 4px rgba(0,0,0,0.15),
+  0 8px 8px rgba(0,0,0,0.15);
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  mat-icon{
+    font-size: 1.8rem;
+    width: 1.8rem;
+    height: 1.8rem;
+  }
+}
+
+
+.hasError{
+  border: 2px solid red;
+  border-radius: 4px;
+}

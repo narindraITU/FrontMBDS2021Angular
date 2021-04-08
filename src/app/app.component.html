@@ -1,0 +1,75 @@
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer #drawer mode="over" class="sidenav"  *ngIf="currentUser" >
+    <div class="top-image-profile">
+      <div class="icon-container">
+        <mat-icon color="primary">supervised_user_circle </mat-icon>
+      </div>
+      <span>
+        {{currentUser.nom}}
+      </span>
+      <span class="class">
+        ({{currentUser.isAdmin ? 'Administrateur' : 'Simple utilisateur'}})
+      </span>
+    </div>
+    <div class="drawer-item" [ngClass]="{'active': this.router.url === '/main/home'}" (click)="goTo(['main','home'])">
+      <mat-icon [matBadge]="currentCounts ? currentCounts.assignments : 0" matBadgePosition="after" matBadgeColor="primary">home</mat-icon>
+      <span >Accueil</span>
+    </div>
+    <div class="drawer-item" [ngClass]="{'active': this.router.url.startsWith('/eleves')}" (click)="goTo(['eleves','main'])">
+      <mat-icon [matBadge]="currentCounts ? currentCounts.eleves : 0" matBadgePosition="after" matBadgeColor="primary" >face</mat-icon>
+      <span >Vos élèves</span>
+    </div>
+    <div class="drawer-item" [ngClass]="{'active': this.router.url.startsWith('/matieres')}" (click)="goTo(['matieres','main'])">
+      <mat-icon [matBadge]="currentCounts ? currentCounts.matieres : 0" matBadgePosition="after" matBadgeColor="primary" >app_registration</mat-icon>
+      <span >Vos matières</span>
+    </div>
+    <div class="drawer-item" [ngClass]="{'active': this.router.url.startsWith('/dashboard')}" (click)="goTo(['dashboard','main'])">
+      <mat-icon>assessment</mat-icon>
+      <span>Tableau de bord</span>
+    </div>
+    <div class="drawer-item" (click)="disconnect()">
+      <mat-icon>close</mat-icon>
+      <span>Déconnexion</span>
+    </div>
+  </mat-drawer>
+  <main>
+    <mat-toolbar color="primary">
+      <mat-toolbar-row>
+        <div class="user-container">
+          <button *ngIf="currentUser" (click)="drawer.toggle()" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+            <mat-icon>menu</mat-icon>
+          </button>
+          <span matTooltip="Une application faite avec passion par Mathias et Narindra">{{title}}</span>
+        </div>
+        <button *ngIf="!isOnLogin()" class="menu-button"
+                mat-stroked-button
+                mat-flat-button="primary"
+                style="margin-right: 10px;"
+                (click)="currentUser ? showUserInfo() : goToLogin()">
+          <ng-container *ngIf="currentUser">
+            <mat-icon color="primary" style="margin-right: 10px;">supervised_user_circle</mat-icon>
+            <span>{{currentUser.nom}}</span>
+          </ng-container>
+          <ng-container *ngIf="!currentUser">
+            <span>Connexion</span>
+          </ng-container>
+        </button>
+      </mat-toolbar-row>
+      <mat-toolbar-row>
+        <button *ngIf="isConnected()" mat-flat-button color="primary" (click)="peuplerLaBase();">
+          Peupler la base
+        </button>
+      </mat-toolbar-row>
+    </mat-toolbar>
+    <div class="navbar">
+      <div class="logo-container">
+        <nav><a routerLink="/home"></a> </nav>
+      </div>
+      <div class="user-container">
+      </div>
+    </div>
+    <router-outlet></router-outlet>
+  </main>
+
+</mat-drawer-container>
+

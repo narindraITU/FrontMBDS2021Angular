@@ -1,0 +1,23 @@
+main{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+  height: 80vh;
+}
+mat-card{
+  padding: 2rem;
+  min-height: 40vh;
+  min-width: 50vw;
+}
+.main-view{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+h1{
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+button{
+}

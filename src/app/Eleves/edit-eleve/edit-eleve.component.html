@@ -1,0 +1,54 @@
+<div class="body">
+  <h1>Modifier l'élève</h1>
+  <form [formGroup]="formulaire" style="width: 100%;">
+    <div class="row">
+    <div class="col-md-6">
+        <mat-form-field>
+          <mat-label>Nom : </mat-label>
+          <input matInput
+                 #nomAssignment
+                 name="nom"
+                 formControlName="nom"
+                 placeholder="Nom"/>
+        </mat-form-field>
+        <p class="error-message" *ngIf="formulaire.controls.nom.errors?.required">
+          Ce champ est requis
+        </p>
+    </div>
+    <div class="col-md-6">
+      <mat-form-field>
+        <mat-label>Prénom : </mat-label>
+        <input matInput
+               #nomAssignment
+               name="prenom"
+               formControlName="prenom"
+               placeholder="Prénom" />
+      </mat-form-field>
+      <p class="error-message" *ngIf="formulaire.controls.prenom.errors?.required">
+        Ce champ est requis
+      </p>
+    </div>
+    </div>
+
+    <div class="row">
+       <div class="col-md-6">
+         <button [disabled]="!formulaire.valid"
+                 mat-stroked-button
+                 color="accent"
+                 style="width: 100%;"
+                 (click)="update()">
+            Mise à jour
+         </button>
+       </div>
+       <div class="col-md-6">
+         <button
+                 mat-stroked-button
+                 color="danger"
+                 style="width: 100%;"
+                 (click)="close()">
+           Fermer
+         </button>
+       </div>
+     </div>
+  </form>
+</div>

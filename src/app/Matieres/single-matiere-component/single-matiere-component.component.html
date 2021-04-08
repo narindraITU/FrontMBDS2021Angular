@@ -1,0 +1,51 @@
+<div class="body">
+    <div>
+      <div class="round-button middle-absolute">
+        <mat-icon>
+          {{matiere.iconeMatiere}}
+        </mat-icon>
+      </div>
+      <div class="toolbox">
+        <div class="square-button" (click)="onDelete.emit(matiere._id)" style="background: red;">
+          <mat-icon>
+            delete
+          </mat-icon>
+        </div>
+        <div class="square-button" (click)="onEdit.emit(matiere._id)" style="background: forestgreen">
+          <mat-icon>
+            mode_edit
+          </mat-icon>
+        </div>
+      </div>
+      <div class="details">
+        <h1>
+          {{matiere.nomMatiere}}
+        </h1>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="image-container"
+                 [ngStyle]="{'background-image':'url(' + matiere.imageProf + ')'}">
+            </div>
+          </div>
+          <div class="col-md-8">
+            <div class="form-describe">
+              <div class="form-field">
+                Nom
+              </div>
+              <div class="form-value">
+                {{matiere.nomMatiere}}
+              </div>
+            </div>
+            <div class="form-describe">
+              <div class="form-field">
+                Nom du professeur
+              </div>
+              <div class="form-value">
+                {{matiere.nomProfesseur}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+<div class="container" *ngIf="assignment">
+  <h1>Edition de l'assignment {{assignment.nom}}</h1>
+  <form class="form" ngForm #assignmentForm>
+    <mat-form-field>
+      <mat-label>Nom </mat-label>
+      <input matInput #nomAssignment
+             required
+             name="nom"
+             placeholder="Edition du nom"
+             [(ngModel)]="nomDevoir" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Date </mat-label>
+      <input matInput #dateAssignement
+             name="Date"
+             required
+             [matDatepicker]="picker"
+             placeholder="Edition de la date"
+             [(ngModel)]="dateDevoir" />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <button mat-stroked-button
+            (click)="submit();"
+            color="primary">
+      Sauver
+    </button>
+  </form>
+</div>

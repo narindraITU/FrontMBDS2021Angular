@@ -1,0 +1,90 @@
+h1{
+  padding:15px;
+}
+.toggle{
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.navbar{
+  width: 100%;
+  padding: 15px;
+  display:flex;
+  justify-content: space-between;
+  background: cornflowerblue;
+  align-items: center;
+  a{
+    font-size: 1.2rem;
+    line-height: 1.3rem;
+    color:white;
+    text-decoration: none;
+  }
+  .menu-button{
+    background: white;
+  }
+}
+mat-toolbar-row{
+  justify-content: space-between;
+}
+
+.user-container{
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  justify-content: space-between;
+}
+.sidenav{
+  min-width: 15vw;
+  .drawer-item{
+    cursor:pointer;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 5px;
+    border-bottom: 1px solid silver;
+    transition: all .3s;
+  }
+  .drawer-item.active{
+    background: dodgerblue;
+    color: white;
+    font-weight: bold;
+  }
+}
+.top-image-profile{
+  padding: 15px;
+  width: 100%;
+  background: #2b45d9;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .icon-container{
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    mat-icon{
+      font-size: 4rem;
+      width: 4rem;
+      height: 4rem;
+    }
+    margin-bottom: 1rem;
+  }
+  span{
+    margin-top: 10px;
+    width: 100%;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color:white;
+    margin-bottom: 10px;
+    &.class{
+      font-weight: normal;
+      font-size: 1rem;
+      color: lightgray;
+    }
+  }
+}
