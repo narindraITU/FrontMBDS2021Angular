@@ -8,20 +8,20 @@
     <ng-container *cdkVirtualFor="let assignment of assignments">
       <mat-card>
       <mat-card-title>{{assignment.dateDeRendu | date}}</mat-card-title>
-      <mat-card-subtitle>{{assignment.eleve.prenom}} {{assignment.eleve.nom}}</mat-card-subtitle>
+      <mat-card-subtitle>Narindra RANDRIANARISOA</mat-card-subtitle>
       <div class="image-item">
-        <img mat-card-image src="{{assignment.matiere.iconeMatiere}}" alt="Angular mat">
-        <img mat-card-image src="{{assignment.matiere.imageProf}}" alt="Angular mat">
+        <img mat-card-image src="https://angular.io/assets/images/logos/angular/angular.svg" alt="Angular mat">
+        <img mat-card-image src="https://image.freepik.com/vecteurs-libre/vecteur-icone-homme-affaires_52756-255.jpg" alt="Angular mat">
       </div>
       <nav>
           <a routerLink="/main/assignment/{{assignment._id}}">
             <mat-list-item>
               <div class="liste-item">
                 <h3 appRendu *ngIf="assignment.rendu; else nonsoumis" >
-                  Devoir intitulé {{assignment.matiere.nomMatiere}}
+                  Devoir intitulé {{assignment.nom}}
                 </h3>
                 <ng-template #nonsoumis>
-                  <h3>Le devoir {{assignment.matiere.nomMatiere}} n'a pas été rendu.</h3>
+                  <h3>Le devoir {{assignment.nom}} n'a pas été rendu.</h3>
                 </ng-template>
                 <mat-divider></mat-divider>
               </div>
