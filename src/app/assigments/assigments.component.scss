@@ -8,7 +8,7 @@
   transition: .3s;
   &:hover{
     background: deepskyblue;
-    color:white !important;
+    color:rgba(211, 211, 211, 0.747) !important;
     font-weight: bold;
   }
 }
@@ -20,6 +20,19 @@ a{
 }
 
 .example-viewport {
-  height: 600px;
+  height: 800px;
+  width: 800px;
   border: 1px solid black;
+}
+
+mat-card img{
+  object-fit: cover; /*this makes the image in src fit to the size specified below*/
+  width: 15%; /* Here you can use wherever you want to specify the width and also the height of the <img>*/
+  height: 15%;
+}
+
+.image-item{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
 }

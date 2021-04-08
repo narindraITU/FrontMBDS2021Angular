@@ -1,23 +1,27 @@
 <main class="container">
   <div class="ajouterBtn">
-    <a routerLink="/add">
+    <a routerLink="/main/add">
       <button mat-flat-button color="accent" >Ajouter Assignment</button>
     </a>
   </div>
   <cdk-virtual-scroll-viewport itemSize="50" class="example-viewport" #scroller>
-  <mat-list >
+    <mat-card>
     <ng-container *cdkVirtualFor="let assignment of assignments">
-      <h3 mat-subheader>{{assignment.dateDeRendu | date}}</h3>
+      <mat-card-title>{{assignment.dateDeRendu | date}}</mat-card-title>
+      <mat-card-subtitle>Narindra RANDRIANARISOA</mat-card-subtitle>
+      <div class="image-item">
+        <img mat-card-image src="https://angular.io/assets/images/logos/angular/angular.svg" alt="Angular mat">
+        <img mat-card-image src="https://image.freepik.com/vecteurs-libre/vecteur-icone-homme-affaires_52756-255.jpg" alt="Angular mat">
+      </div>      
       <nav>
-          <a routerLink="/assignment/{{assignment._id}}">
+          <a routerLink="/main/assignment/{{assignment._id}}">
             <mat-list-item>
-              <div class="liste-item">
-                {{assignment.nom}}
-                <p appRendu *ngIf="assignment.rendu; else nonsoumis" >
+              <div class="liste-item">               
+                <h3 appRendu *ngIf="assignment.rendu; else nonsoumis" >
                   Devoir intitulé {{assignment.nom}}
-                </p>
+                </h3>
                 <ng-template #nonsoumis>
-                  <p>Le devoir {{assignment.nom}} n'a pas été rendu.</p>
+                  <h3>Le devoir {{assignment.nom}} n'a pas été rendu.</h3>
                 </ng-template>
                 <mat-divider></mat-divider>
               </div>
@@ -25,6 +29,6 @@
           </a>
         </nav>
     </ng-container>
-    </mat-list>
+    </mat-card>
   </cdk-virtual-scroll-viewport>
 </main>
