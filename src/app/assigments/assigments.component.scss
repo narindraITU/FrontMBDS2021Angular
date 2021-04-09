@@ -15,25 +15,7 @@
 .ajouterBtn{
   padding: 15px;
 }
-a{
-  text-decoration: none;
-}
 
-.example-viewport {
-  height: 800px;
-}
-
-mat-card img{
-  object-fit: cover; /*this makes the image in src fit to the size specified below*/
-  width: 15%; /* Here you can use wherever you want to specify the width and also the height of the <img>*/
-  height: 15%;
-}
-
-.image-item{
-  display: flex;
-  justify-content: space-between;
-  flex-direction: row;
-}
 h1{
   display: block;
   padding: 20px;
@@ -43,4 +25,8 @@ h1{
   width: 100%;
   text-align: center;
   margin: 0;
+}
+
+.example-viewport {
+  height: 800px;
 }

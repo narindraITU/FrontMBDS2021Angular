@@ -8,15 +8,17 @@ import {AddAssignmentComponent} from "./add-assignment/add-assignment.component"
 import {FormsModule} from "@angular/forms";
 import {CommonModule, DatePipe} from "@angular/common";
 import { SingleAssignmentComponent } from './single-assignment/single-assignment.component';
+import {DragDropModule} from "@angular/cdk/drag-drop";
 
 
 @NgModule({
-  imports: [
-    AngularMaterialModule,
-    AssignmentsRoutingModule,
-    FormsModule,
-    CommonModule,
-  ],
+    imports: [
+        AngularMaterialModule,
+        AssignmentsRoutingModule,
+        FormsModule,
+        CommonModule,
+        DragDropModule,
+    ],
   declarations: [
     AssignmentDetailComponent,
     AssigmentsComponent,

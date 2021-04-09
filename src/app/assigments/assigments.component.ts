@@ -4,6 +4,7 @@ import {AssignmentsService} from "../shared/HttpServices/assignments.service";
 import {MessagingService} from "../shared/Others/messaging.service";
 import {CdkVirtualScrollViewport} from "@angular/cdk/scrolling";
 import {filter, map, pairwise, tap, throttleTime} from "rxjs/operators";
+import {CdkDragDrop} from "@angular/cdk/drag-drop";
 
 @Component({
   selector: 'app-assigments',
@@ -95,5 +96,9 @@ export class AssigmentsComponent implements OnInit {
           this.getAssignmentsNonRendus(); // déjà prêt car nextPage re-initialisé à chaque requête
         });
       });
+  }
+
+  drop($event: CdkDragDrop<any,any>) {
+
   }
 }
