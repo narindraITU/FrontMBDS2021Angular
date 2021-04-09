@@ -21,8 +21,6 @@ a{
 
 .example-viewport {
   height: 800px;
-  width: 800px;
-  border: 1px solid black;
 }
 
 mat-card img{
@@ -35,4 +33,14 @@ mat-card img{
   display: flex;
   justify-content: space-between;
   flex-direction: row;
+}
+h1{
+  display: block;
+  padding: 20px;
+  background: dodgerblue;
+  color:white;
+  font-weight: bold;
+  width: 100%;
+  text-align: center;
+  margin: 0;
 }

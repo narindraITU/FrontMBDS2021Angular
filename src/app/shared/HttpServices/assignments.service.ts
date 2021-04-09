@@ -31,10 +31,11 @@ export class AssignmentsService {
   deleteAssignment(assignment: AssignmentModel): Observable<any>{
     return this.httpClient.delete(Configurations.baseURI + this.suffix + '/' + assignment._id);
   }
-  getAssignmentsPagine(
+  getAssignmentsPaginated(
     nextPage: Number = 1,
+    isRendu: boolean,
   ): Observable<Object> {
-    const urlPagination = Configurations.baseURI + this.suffix + `?page=${nextPage}`;
+    const urlPagination = Configurations.baseURI + this.suffix + `?page=${nextPage}&rendu=${isRendu}`;
     return this.httpClient.get<Object>(urlPagination);
   }
   peuplerBDJoin(): Observable<any> {
