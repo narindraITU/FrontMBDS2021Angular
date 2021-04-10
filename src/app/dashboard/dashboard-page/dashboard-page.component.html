@@ -1,19 +1,90 @@
 <div class="body">
-  <div class="row" style="justify-content: center">
-    <div class="col-md-2">
-      <app-dashboard-card icone="face" [nombre]="69" texte="Elèves"></app-dashboard-card>
+  <div class="row cards">
+    <div class="col-md-3">
+      <app-dashboard-card icone="face"
+                          [loading]="!currentCounts"
+                          [nombre]="currentCounts ? currentCounts.eleves : 0"
+                          texte="Elèves"></app-dashboard-card>
     </div>
-    <div class="col-md-2">
-      <app-dashboard-card icone="app_registration" [nombre]="69" texte="Matières"></app-dashboard-card>
+    <div class="col-md-3">
+      <app-dashboard-card icone="app_registration"
+                          [loading]="!currentCounts"
+                          [nombre]="currentCounts ? currentCounts.matieres : 0" texte="Matières"></app-dashboard-card>
     </div>
-    <div class="col-md-2">
-      <app-dashboard-card icone="book" [nombre]="69" texte="Devoirs"></app-dashboard-card>
+    <div class="col-md-3">
+      <app-dashboard-card icone="book"
+                          [loading]="!currentCounts"
+                          [nombre]="currentCounts ? currentCounts.assignments : 0" texte="Devoirs"></app-dashboard-card>
     </div>
-    <div class="col-md-2">
-      <app-dashboard-card icone="bookmark_border" [nombre]="69" texte="Devoirs non rendus"></app-dashboard-card>
+    <div class="col-md-3">
+      <app-dashboard-card
+        icone="bookmark_border"
+        [loading]="!currentCounts"
+        [nombre]="currentCounts ? currentCounts.assignments_rendus : 0"
+        texte="Devoirs non rendus"></app-dashboard-card>
     </div>
-    <div class="col-md-2">
-      <app-dashboard-card icone="bookmark" [nombre]="69" texte="Devoirs rendus"></app-dashboard-card>
+    <div class="col-md-3">
+      <app-dashboard-card
+        icone="bookmark"
+        [loading]="!currentCounts"
+        [nombre]="currentCounts ? currentCounts.assignments_nonrendus : 0"
+        texte="Devoirs rendus"></app-dashboard-card>
+    </div>
+  </div>
+  <div class="row">
+      <div *ngIf="dataAssignments.days.data.length!=0" class="col-md-6">
+        <mat-card class="timeline-card">
+          <h1 class="card-title">Evolution du nombre de devoirs par date de rendu</h1>
+          <div class="card-container">
+            <ngx-charts-line-chart
+                                   [scheme]="colorScheme"
+                                   [legend]="per_day_data.legend"
+                                   [showXAxisLabel]="per_day_data.showXAxisLabel"
+                                   [showYAxisLabel]="per_day_data.showYAxisLabel"
+                                   [xAxis]="true"
+                                   [yAxis]="true"
+                                   [xAxisLabel]="dataAssignments.days.xAxisLabel"
+                                   [yAxisLabel]="dataAssignments.days.yAxisLabel"
+                                   [results]="this.dataAssignments.days.data">
+            </ngx-charts-line-chart>
+          </div>
+        </mat-card>
+      </div>
+      <div *ngIf="dataMatieres.days.data.length!=0" class="col-md-6">
+        <mat-card class="timeline-card">
+          <h1 class="card-title">Evolution du nombre de matières par jour</h1>
+          <div class="card-container">
+          <ngx-charts-line-chart
+            [scheme]="colorScheme"
+            [legend]="per_day_data.legend"
+            [showXAxisLabel]="per_day_data.showXAxisLabel"
+            [showYAxisLabel]="per_day_data.showYAxisLabel"
+            [xAxis]="true"
+            [yAxis]="true"
+            [xAxisLabel]="dataMatieres.days.xAxisLabel"
+            [yAxisLabel]="dataMatieres.days.yAxisLabel"
+            [results]="this.dataMatieres.days.data">
+          </ngx-charts-line-chart>
+          </div>
+        </mat-card>
+      </div>
+    <div *ngIf="dataEleves.days.data.length!=0" class="col-md-6">
+      <mat-card class="timeline-card">
+        <h1 class="card-title">Evolution du nombre d'élèves par jour</h1>
+        <div class="card-container">
+          <ngx-charts-line-chart
+            [scheme]="colorScheme"
+            [legend]="per_day_data.legend"
+            [showXAxisLabel]="per_day_data.showXAxisLabel"
+            [showYAxisLabel]="per_day_data.showYAxisLabel"
+            [xAxis]="true"
+            [yAxis]="true"
+            [xAxisLabel]="dataEleves.days.xAxisLabel"
+            [yAxisLabel]="dataEleves.days.yAxisLabel"
+            [results]="this.dataEleves.days.data">
+          </ngx-charts-line-chart>
+        </div>
+      </mat-card>
     </div>
   </div>
 </div>
