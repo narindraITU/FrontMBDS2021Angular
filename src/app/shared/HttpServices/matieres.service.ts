@@ -23,6 +23,9 @@ export class MatieresService {
   load(page: number){
     return this.httpClient.get<any>(Configurations.baseURI + this.suffix + `?page=${page}`);
   }
+  loadAll(){
+    return this.httpClient.get<any>(Configurations.baseURI+ this.suffix +"/all");
+  }
   delete(id: string){
     return this.httpClient.delete<any>(Configurations.baseURI + this.suffix + `?id=${id}`);
   }

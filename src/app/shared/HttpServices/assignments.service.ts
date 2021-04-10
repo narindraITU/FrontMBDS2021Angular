@@ -22,7 +22,7 @@ export class AssignmentsService {
     return this.httpClient.get<AssignmentModel | null>(Configurations.baseURI + this.suffix + '/' + id);
   }
   addAssignment(assignment: AssignmentModel): Observable<any>{
-    return this.httpClient.post<AssignmentModel>(Configurations.baseURI, assignment);
+    return this.httpClient.post<AssignmentModel>(Configurations.baseURI + this.suffix, assignment);
   }
   updateAssignment(assignment: AssignmentModel): Observable<any>{
     this.loggingService.log(assignment, 'updated');

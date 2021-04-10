@@ -5,10 +5,12 @@ import {EditAssignmentComponent} from "./edit-assignment/edit-assignment.compone
 import {AngularMaterialModule} from "../angular.material.module";
 import {AssignmentsRoutingModule} from "./assignments-routing.module";
 import {AddAssignmentComponent} from "./add-assignment/add-assignment.component";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule } from "@angular/forms";
 import {CommonModule, DatePipe} from "@angular/common";
 import { SingleAssignmentComponent } from './single-assignment/single-assignment.component';
-
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatSelectModule } from '@angular/material/select';
+import {NgxEditorModule} from 'ngx-editor';
 
 @NgModule({
   imports: [
@@ -16,6 +18,10 @@ import { SingleAssignmentComponent } from './single-assignment/single-assignment
     AssignmentsRoutingModule,
     FormsModule,
     CommonModule,
+    ReactiveFormsModule,
+    MatStepperModule,
+    MatSelectModule,
+    NgxEditorModule,
   ],
   declarations: [
     AssignmentDetailComponent,

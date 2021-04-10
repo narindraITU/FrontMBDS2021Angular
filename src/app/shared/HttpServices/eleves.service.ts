@@ -21,4 +21,7 @@ export class ElevesService {
   update(id: string,data: {nom: string,prenom: string}){
     return this.httpClient.put<any>(Configurations.baseURI + this.suffix + `?id=${id}`, data);
   }
+  loadAll(){
+    return this.httpClient.get<any>(Configurations.baseURI + this.suffix+"/all");
+  }
 }
