@@ -23,6 +23,7 @@
                      required />
             </mat-form-field>
           </td>
+          <td style="text-align: center;">{{current_date | date}}</td>
           <td>
             <div class="icon-container">
               <mat-icon
@@ -35,6 +36,7 @@
         <tr>
             <th style="background: cornflowerblue;">Nom</th>
             <th style="background: cornflowerblue">Prénom</th>
+            <th style="background: cornflowerblue">Date de création</th>
             <th style="background: lightskyblue"></th>
           </tr>
         </thead>
@@ -45,6 +47,9 @@
             </td>
             <td style="padding: 5px;text-align: center;">
                 {{eleve.prenom}}
+            </td>
+            <td style="padding: 5px;text-align: center;">
+              {{getDate(eleve.dateCreated) | date}}
             </td>
             <td>
               <div class="toolbox">

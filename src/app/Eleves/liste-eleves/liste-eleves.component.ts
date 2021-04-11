@@ -18,6 +18,7 @@ export class ListeElevesComponent implements OnInit {
   liste: Eleves[] = [];
   page: number = 1;
   totalDocs: number = 0;
+  current_date = new Date();
   constructor(private elevesServices: ElevesService,
               private readonly ngZone: NgZone,
               private matdialog: MatDialog,
@@ -26,6 +27,9 @@ export class ListeElevesComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadData();
+  }
+  getDate(texte: string){
+    return new Date(texte);
   }
   loadData(){
     const spinner = this.messagingService.createSpinner();

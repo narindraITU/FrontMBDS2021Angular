@@ -1,7 +1,6 @@
 import {Component, NgZone, OnInit, ViewChild} from '@angular/core';
 import {AuthService} from "./shared/HttpServices/auth.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {MatDialog} from "@angular/material/dialog";
 import {AssignmentsService} from "./shared/HttpServices/assignments.service";
 import {MessagingService} from "./shared/Others/messaging.service";
 import {UserModel} from "./auth/login/user.model";

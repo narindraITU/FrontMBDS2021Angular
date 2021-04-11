@@ -16,12 +16,22 @@ type oneData = {isLoading: boolean,xAxisLabel: string,yAxisLabel: string,
 })
 export class DashboardPageComponent implements OnInit {
   currentCounts: any = null;
-  dataAssignments: {days: oneData} = {days: {
+  dataAssignments: {days: oneData,month: oneData, year: oneData} = {days: {
       isLoading: false,
       xAxisLabel: 'Date de rendu',
       yAxisLabel: 'Devoirs',
       data: [],
-  }};
+  }, month: {
+      isLoading: false,
+      xAxisLabel: 'Mois',
+      yAxisLabel: 'Devoirs',
+      data: [],
+    }, year:{
+      isLoading: false,
+      xAxisLabel: 'Année',
+      yAxisLabel: 'Devoirs',
+      data: [],
+    }};
   dataMatieres: {days: oneData} = {days: {
       isLoading: false,
       xAxisLabel: 'Date de création',
@@ -59,6 +69,24 @@ export class DashboardPageComponent implements OnInit {
     });
     return tableau_sort;
   }
+  orderYears(tableau: any[]): any[]{
+    const tableau_sort =  tableau.sort((a,b) => {
+      const date_a = parseInt(a.name);
+      const date_b = parseInt(b.name);
+      return date_a - date_b;
+    });
+    return tableau_sort;
+  }
+  orderMonthYears(tableau: any[]): any[]{
+    const tableau_sort =  tableau.sort((a,b) => {
+      const splitted_a = a.split("-");
+      const splitted_b = a.split("-");
+      const date_a = parseInt(splitted_a[1] + splitted_a[0]);
+      const date_b = parseInt(splitted_b[1] + splitted_b[0]);
+      return date_a - date_b;
+    });
+    return tableau_sort;
+  }
   loadAssignmentsData(){
     this.dataAssignments.days.isLoading = true;
     this.dashboardService.statsAssignments().subscribe(data => {
@@ -88,7 +116,6 @@ export class DashboardPageComponent implements OnInit {
       // data assignments
       this.dataAssignments.days.data = series;
 
-
       // data matieres
       const series_matieres = [];
       series_matieres.push({
@@ -111,6 +138,17 @@ export class DashboardPageComponent implements OnInit {
       });
       this.dataEleves.days.data = series_eleves;
       this.dataAssignments.days.isLoading = false;
+
+
+      this.dataAssignments.year.data = this.orderYears(data.assignments_ans.map(value => ({
+          name: value._id.dateCreated,
+          value: value.count,
+      })));
+
+      this.dataAssignments.month.data = this.orderMonthYears(data.assignments_mois.map(value => ({
+        name: value._id.dateCreated,
+        value: value.count,
+      })));
     }, error => {
       console.log(error);
       this.dataAssignments.days.isLoading = false;
@@ -127,5 +165,5 @@ export class DashboardPageComponent implements OnInit {
   }
    dateTickFormatting(val: any): Date {
       return moment(val,"YYYY-MM-dd").toDate();
-    }
+   }
 }

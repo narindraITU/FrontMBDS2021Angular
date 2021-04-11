@@ -86,5 +86,33 @@
         </div>
       </mat-card>
     </div>
+      <div *ngIf="dataAssignments.month.data.length!=0" class="col-md-6">
+        <mat-card class="timeline-card">
+          <h1 class="card-title">Devoirs rendus par mois</h1>
+          <div class="card-container">
+            <ngx-charts-bar-vertical
+              [scheme]="colorScheme"
+              [results]="dataAssignments.month.data"
+              [xAxis]="true"
+              [yAxis]="true"
+              [legend]="true"
+              [showXAxisLabel]="true"
+              [showYAxisLabel]="true"
+              [xAxisLabel]="dataAssignments.month.xAxisLabel"
+              [yAxisLabel]="dataAssignments.month.yAxisLabel"></ngx-charts-bar-vertical>
+          </div>
+        </mat-card>
+      </div>
+        <div *ngIf="dataAssignments.year.data.length!=0" class="col-md-6">
+          <mat-card class="timeline-card">
+            <h1 class="card-title">Devoirs rendus par années</h1>
+            <div class="card-container">
+              <ngx-charts-pie-chart
+                [scheme]="colorScheme"
+                [results]="dataAssignments.year.data"
+                [legend]="true"></ngx-charts-pie-chart>
+            </div>
+          </mat-card>
+        </div>
+    </div>
   </div>
-</div>

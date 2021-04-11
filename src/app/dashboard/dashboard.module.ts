@@ -6,10 +6,8 @@ import {DashboardRoutingModule} from "./dashboard-routing.module";
 import { DashboardCardComponent } from './dashboard-card/dashboard-card.component';
 import {MatIconModule} from "@angular/material/icon";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
-import {LineChartModule} from "@swimlane/ngx-charts";
+import {BarChartModule, LineChartModule, PieChartModule} from "@swimlane/ngx-charts";
 import {MatCardModule} from "@angular/material/card";
-
-
 
 @NgModule({
   declarations: [DashboardComponent, DashboardPageComponent, DashboardCardComponent],
@@ -19,7 +17,9 @@ import {MatCardModule} from "@angular/material/card";
     MatIconModule,
     MatProgressSpinnerModule,
     LineChartModule,
+    BarChartModule,
     MatCardModule,
+    PieChartModule,
   ],
   bootstrap: [DashboardComponent]
 })
