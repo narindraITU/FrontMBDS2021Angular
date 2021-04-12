@@ -32,8 +32,7 @@ export class AssignmentDetailComponent implements OnInit {
   }
 
   onAssignmentRendu(){
-    if(this.assignementTransmis.note != 0){
-      this.assignementTransmis.rendu = true;
+    this.assignementTransmis.rendu = true;
       const loader = this.messagingService.createSpinner();
       this.assignmentsService.updateAssignment(this.assignementTransmis).subscribe(data => {
         loader.close();
@@ -42,7 +41,6 @@ export class AssignmentDetailComponent implements OnInit {
         this.messagingService.openSnackBar('Une erreur est survenue', 4000);
         loader.close();
       });
-    }
   }
   deleteAssignment(){
     const loader = this.messagingService.createSpinner();
