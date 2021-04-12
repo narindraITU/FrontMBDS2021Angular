@@ -12,18 +12,18 @@
       <mat-chip-list aria-label="Fish selection">
         <mat-chip>{{this.assignment.dateDeRendu | date}}</mat-chip>
         <mat-chip color="primary" selected>{{this.assignment.matiere.nomMatiere}}</mat-chip>
-        <mat-chip color="danger" *ngIf="assignment.note" color="danger" selected>
+        <mat-chip *ngIf="assignment.note" color="accent" selected>
           {{this.assignment.note}} / 20
         </mat-chip>
       </mat-chip-list>
     </div>
     <div class="toolbox-content">
-      <div style="background: orangered">
+      <div style="background: orangered" (click)="this.rendre.emit(this.assignment)">
           <mat-icon>
             {{assignment.rendu ? 'star' : 'star_outline'}}
           </mat-icon>
       </div>
-      <div style="background: cornflowerblue">
+      <div style="background: cornflowerblue" (click)="information(this.assignment._id)" (click)="info()">
         <mat-icon>
           info
         </mat-icon>
