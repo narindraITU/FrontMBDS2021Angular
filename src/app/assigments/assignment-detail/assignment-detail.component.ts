@@ -32,20 +32,22 @@ export class AssignmentDetailComponent implements OnInit {
   }
 
   onAssignmentRendu(){
-    this.assignementTransmis.rendu = true;
-    const loader = this.messagingService.createSpinner();
-    this.assignmentsService.updateAssignment(this.assignementTransmis).subscribe(data => {
-      loader.close();
-      this.router.navigate(['/home']);
-    }, error => {
-      this.messagingService.openSnackBar('Une erreur est survenue', 4000);
-      loader.close();
-    });
+    if(this.assignementTransmis.note != 0){
+      this.assignementTransmis.rendu = true;
+      const loader = this.messagingService.createSpinner();
+      this.assignmentsService.updateAssignment(this.assignementTransmis).subscribe(data => {
+        loader.close();
+        this.router.navigate(['main/home']);
+      }, error => {
+        this.messagingService.openSnackBar('Une erreur est survenue', 4000);
+        loader.close();
+      });
+    }
   }
   deleteAssignment(){
     const loader = this.messagingService.createSpinner();
     this.assignmentsService.deleteAssignment(this.assignementTransmis).subscribe(data => {
-      this.router.navigate(['/home']);
+      this.router.navigate(['main/home']);
       loader.close();
     }, error => {
       this.messagingService.openSnackBar('Une erreur est survenue', 4000);
@@ -57,6 +59,6 @@ export class AssignmentDetailComponent implements OnInit {
   }
 
   onClickEdit() {
-    this.router.navigate(['/assignment',this.assignementTransmis._id,'edit'])
+    this.router.navigate(['/main', 'assignment',this.assignementTransmis._id,'edit'])
   }
 }

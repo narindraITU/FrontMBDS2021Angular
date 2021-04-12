@@ -1,19 +1,11 @@
 <mat-horizontal-stepper [linear]="isLinear" #stepper>
   <mat-step [stepControl]="firstFormGroup">
-    <form [formGroup]="firstFormGroup" (ngSubmit)="nameSubmit()">
-      <ng-template matStepLabel>Ecrivez le nom de l'assignment</ng-template>
+    <form [formGroup]="firstFormGroup" (ngSubmit)="FirstSubmit()">
+      <ng-template matStepLabel>Assignment et date de rendu</ng-template>
       <mat-form-field>
         <mat-label>Nom</mat-label>
         <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
-      </mat-form-field>
-      <div>
-        <button mat-button matStepperNext>Suivant</button>
-      </div>
-    </form>
-  </mat-step>
-  <mat-step [stepControl]="secondFormGroup">
-    <form [formGroup]="secondFormGroup" (ngSubmit)="dateSubmit()">
-      <ng-template matStepLabel>Ecrivez la date de rendu</ng-template>
+      </mat-form-field><br/><br/>
       <mat-form-field>
         <mat-label>Date : </mat-label>
         <input matInput #dateAssignement
@@ -25,31 +17,21 @@
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
       <div>
-        <button mat-button matStepperPrevious>Précedent</button>
         <button mat-button matStepperNext>Suivant</button>
       </div>
     </form>
   </mat-step>
-  <mat-step [stepControl]="ThirdFormGroup">
-    <form [formGroup]="ThirdFormGroup" (ngSubmit)="matiereSubmit()">
-      <ng-template matStepLabel>Sélectionnez la matière</ng-template>
+  <mat-step [stepControl]="secondFormGroup">
+    <form [formGroup]="secondFormGroup" (ngSubmit)="SecondSubmit()">
+      <ng-template matStepLabel>Matière et Elève</ng-template>
       <mat-form-field>
-        <mat-label>Matiere</mat-label>
+        <mat-label>Matière</mat-label>
         <mat-select [(ngModel)]="matiereItem" [ngModelOptions]="{standalone: true}">
           <mat-option *ngFor="let matiere of matieres" [value]="matiere._id">
             {{matiere.nomMatiere}}
           </mat-option>
         </mat-select>
-      </mat-form-field>
-      <div>
-        <button mat-button matStepperPrevious>Précedent</button>
-        <button mat-button matStepperNext>Suivant</button>
-      </div>
-    </form>
-  </mat-step>
-  <mat-step [stepControl]="FourthFormGroup">
-    <form [formGroup]="FourthFormGroup" (ngSubmit)="eleveSubmit()">
-      <ng-template matStepLabel>Sélectionnez l'élève</ng-template>
+      </mat-form-field><br/><br/>
       <mat-form-field>
         <mat-label>Elève</mat-label>
         <mat-select [(ngModel)]="eleveItem" [ngModelOptions]="{standalone: true}">
@@ -64,22 +46,13 @@
       </div>
     </form>
   </mat-step>
-  <mat-step [stepControl]="fifthFormGroup">
-    <form [formGroup]="fifthFormGroup" (ngSubmit)="noteSubmit()">
-      <ng-template matStepLabel>Ecrivez la note</ng-template>
+  <mat-step [stepControl]="ThirdFormGroup">
+    <form [formGroup]="ThirdFormGroup" (ngSubmit)="ThirdSubmit()">
+      <ng-template matStepLabel>Note et remarque</ng-template>
       <mat-form-field>
         <mat-label>Note</mat-label>
         <input matInput placeholder="10" formControlName="noteCtrl" required>
-      </mat-form-field>
-      <div>
-        <button mat-button matStepperPrevious>Précedent</button>
-        <button mat-button matStepperNext>Suivant</button>
-      </div>
-    </form>
-  </mat-step>
-  <mat-step [stepControl]="sixthFormGroup">
-    <form [formGroup]="sixthFormGroup" (ngSubmit)="remarqueSubmit()">
-      <ng-template matStepLabel>Ecrivez une remarque</ng-template>
+      </mat-form-field><br/><br/>
       <mat-label>Remarque</mat-label>
         <ngx-editor-menu [editor]="remarqueeditor"> </ngx-editor-menu>
           <ngx-editor

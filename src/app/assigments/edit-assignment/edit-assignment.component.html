@@ -1,5 +1,5 @@
 <div class="container" *ngIf="assignment">
-  <h1>Edition de l'assignment {{assignment.nom}}</h1>
+  <h1>Edition de l'assignment {{assignment.nom}} {{assignment.idMatiere}} {{assignment.idEleve}}</h1>
   <form class="form" ngForm #assignmentForm>
     <mat-form-field>
       <mat-label>Nom </mat-label>
@@ -7,7 +7,7 @@
              required
              name="nom"
              placeholder="Edition du nom"
-             [(ngModel)]="nomDevoir" />
+             [(ngModel)]="nomDevoir" [ngModelOptions]="{standalone: true}"/>
     </mat-form-field>
     <mat-form-field>
       <mat-label>Date </mat-label>
@@ -20,6 +20,33 @@
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
+    <mat-form-field>
+      <mat-label>Matière</mat-label>
+      <mat-select [(ngModel)]="matiereItem" [ngModelOptions]="{standalone: true}">
+        <mat-option *ngFor="let matiere of matieres" [value]="matiere._id">
+          {{matiere.nomMatiere}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field><br/><br/>
+    <mat-form-field>
+      <mat-label>Elève</mat-label>
+      <mat-select [(ngModel)]="eleveItem" [ngModelOptions]="{standalone: true}">
+        <mat-option *ngFor="let eleve of eleves" [value]="eleve._id">
+          {{eleve.nom}} {{eleve.prenom}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Note</mat-label>
+      <input matInput placeholder="10" [(ngModel)]="note" [ngModelOptions]="{standalone: true}"/>
+    </mat-form-field><br/><br/>
+    <mat-label>Remarque</mat-label>
+      <ngx-editor-menu [editor]="remarqueeditor"> </ngx-editor-menu>
+        <ngx-editor
+          [editor]="remarqueeditor"
+          placeholder="Type here..."
+          [(ngModel)]="remarque" [ngModelOptions]="{standalone: true}"
+        ></ngx-editor>
     <button mat-stroked-button
             (click)="submit();"
             color="primary">
