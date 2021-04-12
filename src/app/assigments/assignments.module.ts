@@ -12,6 +12,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatSelectModule } from '@angular/material/select';
 import {NgxEditorModule} from 'ngx-editor';
 import {DragDropModule} from "@angular/cdk/drag-drop";
+import {MatChipsModule} from "@angular/material/chips";
 
 @NgModule({
   imports: [
@@ -24,6 +25,7 @@ import {DragDropModule} from "@angular/cdk/drag-drop";
     MatSelectModule,
     NgxEditorModule,
     DragDropModule,
+    MatChipsModule,
   ],
   declarations: [
     AssignmentDetailComponent,

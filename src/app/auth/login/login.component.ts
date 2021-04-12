@@ -5,6 +5,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 import {MessagingService} from '../../shared/Others/messaging.service';
 import {Router} from '@angular/router';
 import {catchError, mergeMap} from "rxjs/operators";
+import {DashboardService} from "../../shared/HttpServices/dashboard.service";
 
 @Component({
   selector: 'app-login',
@@ -16,6 +17,7 @@ export class LoginComponent implements OnInit {
   password = '';
 
   constructor(private router: Router,
+              private dashboardService: DashboardService,
               private messagingService: MessagingService,
               public authService: AuthService) { }
 
@@ -27,6 +29,7 @@ export class LoginComponent implements OnInit {
     this.authService.getToken(this.login, this.password).pipe(
       mergeMap(data => {
         this.authService.setToken(data.token);
+        this.dashboardService.reloadCounts();
         return this.authService.me();
       }),
       catchError(error => {
