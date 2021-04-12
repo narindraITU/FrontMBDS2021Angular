@@ -8,7 +8,7 @@ import {ElevesService} from "../../shared/HttpServices/eleves.service";
 import {Router} from "@angular/router";
 import {MessagingService} from "../../shared/Others/messaging.service";
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Editor , schema, toDoc, toHTML} from 'ngx-editor';
+import { Editor } from 'ngx-editor';
 
 
 @Component({
@@ -30,9 +30,6 @@ export class AddAssignmentComponent implements OnInit {
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   ThirdFormGroup: FormGroup;
-  FourthFormGroup: FormGroup;
-  fifthFormGroup: FormGroup;
-  sixthFormGroup: FormGroup;
 
   matiereItem: string;
   eleveItem: string;
@@ -55,15 +52,7 @@ export class AddAssignmentComponent implements OnInit {
       secondCtrl: ['', Validators.required]
     });
     this.ThirdFormGroup = this._formBuilder.group({
-      ThirdCtrl: ['', Validators.required]
-    });
-    this.FourthFormGroup = this._formBuilder.group({
-      fourthCtrl: ['', Validators.required]
-    });
-    this.fifthFormGroup = this._formBuilder.group({
-      noteCtrl: ['']
-    });
-    this.sixthFormGroup = this._formBuilder.group({
+      noteCtrl: [''],
       remarqueItem: ['']
     });
     this.getMatieres();
@@ -106,28 +95,23 @@ export class AddAssignmentComponent implements OnInit {
     });
   }
 
-  nameSubmit(){
+  FirstSubmit(){
     this.nomDevoir = this.firstFormGroup.get('firstCtrl').value;
     console.log(this.nomDevoir);
-  }
-
-  dateSubmit(){
     console.log(this.dateDevoir);
   }
-  matiereSubmit(){
+  SecondSubmit(){
     console.log(this.matiereItem);
     this.idmatiere = this.matiereItem;
-  }
-  eleveSubmit(){
+    
     console.log(this.eleveItem);
     this.ideleve = this.eleveItem;
   }
-  noteSubmit(){
-    this.note = this.fifthFormGroup.get('noteCtrl').value;
+  ThirdSubmit(){
+    this.note = this.ThirdFormGroup.get('noteCtrl').value;
     console.log(this.note);
-  }
-  remarqueSubmit(){
-    this.remarque = this.sixthFormGroup.get('remarqueItem').value;
+    
+    this.remarque = this.ThirdFormGroup.get('remarqueItem').value;
     console.log(this.remarque);
   }
 }
