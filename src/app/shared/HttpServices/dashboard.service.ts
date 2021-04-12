@@ -17,6 +17,9 @@ export class DashboardService {
   getCounts(): Observable<any | null>{
     return new Observable(fn => this.counts.subscribe(fn));
   }
+  statsAssignments(): Observable<any>{
+    return this.httpClient.get<any>(Configurations.baseURI + this.suffix + '/stats_assignments');
+  }
   reloadCounts(){
     this.loadCounts().subscribe((data) => {
       this.counts.next(data);

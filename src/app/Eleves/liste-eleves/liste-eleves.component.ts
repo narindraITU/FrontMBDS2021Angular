@@ -5,6 +5,7 @@ import {Eleves} from "../eleves.model";
 import {MatDialog} from "@angular/material/dialog";
 import {EditEleveComponent} from "../edit-eleve/edit-eleve.component";
 import {PageEvent} from "@angular/material/paginator";
+import {DashboardService} from "../../shared/HttpServices/dashboard.service";
 
 @Component({
   selector: 'app-liste-eleves',
@@ -17,13 +18,18 @@ export class ListeElevesComponent implements OnInit {
   liste: Eleves[] = [];
   page: number = 1;
   totalDocs: number = 0;
+  current_date = new Date();
   constructor(private elevesServices: ElevesService,
               private readonly ngZone: NgZone,
               private matdialog: MatDialog,
+              private dashboardService: DashboardService,
               private messagingService: MessagingService) { }
 
   ngOnInit(): void {
     this.loadData();
+  }
+  getDate(texte: string){
+    return new Date(texte);
   }
   loadData(){
     const spinner = this.messagingService.createSpinner();
@@ -41,6 +47,7 @@ export class ListeElevesComponent implements OnInit {
       const spinner = this.messagingService.createSpinner();
       this.elevesServices.createEleve({nom: this.nom, prenom: this.prenom}).subscribe((data) => {
         this.messagingService.openSnackBar("Un nouvel élève a été créé", 1500);
+        this.dashboardService.reloadCounts();
         spinner.close();
         this.nom = "";
         this.prenom = "";

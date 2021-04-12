@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {AssignmentModel} from "../assignment.model";
 
 @Component({
   selector: 'app-single-assignment',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./single-assignment.component.scss']
 })
 export class SingleAssignmentComponent implements OnInit {
-
+  @Input()assignment: AssignmentModel;
   constructor() { }
 
   ngOnInit(): void {

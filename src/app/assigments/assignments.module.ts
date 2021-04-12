@@ -11,6 +11,7 @@ import { SingleAssignmentComponent } from './single-assignment/single-assignment
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatSelectModule } from '@angular/material/select';
 import {NgxEditorModule} from 'ngx-editor';
+import {DragDropModule} from "@angular/cdk/drag-drop";
 
 @NgModule({
   imports: [
@@ -22,6 +23,7 @@ import {NgxEditorModule} from 'ngx-editor';
     MatStepperModule,
     MatSelectModule,
     NgxEditorModule,
+    DragDropModule,
   ],
   declarations: [
     AssignmentDetailComponent,

@@ -1,34 +1,25 @@
-<main class="container">
+<main style="width:100%;">
   <div class="ajouterBtn">
     <a routerLink="/main/add">
       <button mat-flat-button color="accent" >Ajouter Assignment</button>
     </a>
   </div>
-  <cdk-virtual-scroll-viewport itemSize="50" class="example-viewport" #scroller>
-    <ng-container *cdkVirtualFor="let assignment of assignments">
-      <mat-card>
-      <mat-card-title>{{assignment.dateDeRendu | date}}</mat-card-title>
-      <mat-card-subtitle>Narindra RANDRIANARISOA</mat-card-subtitle>
-      <div class="image-item">
-        <img mat-card-image src="https://angular.io/assets/images/logos/angular/angular.svg" alt="Angular mat">
-        <img mat-card-image src="https://image.freepik.com/vecteurs-libre/vecteur-icone-homme-affaires_52756-255.jpg" alt="Angular mat">
-      </div>
-      <nav>
-          <a routerLink="/main/assignment/{{assignment._id}}">
-            <mat-list-item>
-              <div class="liste-item">
-                <h3 appRendu *ngIf="assignment.rendu; else nonsoumis" >
-                  Devoir intitulé {{assignment.nom}}
-                </h3>
-                <ng-template #nonsoumis>
-                  <h3>Le devoir {{assignment.nom}} n'a pas été rendu.</h3>
-                </ng-template>
-                <mat-divider></mat-divider>
-              </div>
-            </mat-list-item>
-          </a>
-        </nav>
-      </mat-card>
-    </ng-container>
-  </cdk-virtual-scroll-viewport>
+  <div class="row">
+    <div class="col-md-6">
+      <h1>Devoirs rendus</h1>
+      <cdk-virtual-scroll-viewport cdkDropList (cdkDropListDropped)="drop($event)" itemSize="50" class="example-viewport" #scrollerRendus>
+        <ng-container *cdkVirtualFor="let assignment of assignmentsRendus">
+          <app-single-assignment cdkDrag [assignment]="assignment"></app-single-assignment>
+        </ng-container>
+      </cdk-virtual-scroll-viewport>
+    </div>
+    <div class="col-md-6">
+      <h1>Devoirs non-rendus</h1>
+      <cdk-virtual-scroll-viewport cdkDropList (cdkDropListDropped)="drop($event)" itemSize="50" class="example-viewport" #scrollerNonRendus>
+        <ng-container *cdkVirtualFor="let assignment of assignmentsNonRendus">
+          <app-single-assignment cdkDrag [assignment]="assignment"></app-single-assignment>
+        </ng-container>
+      </cdk-virtual-scroll-viewport>
+    </div>
+  </div>
 </main>
