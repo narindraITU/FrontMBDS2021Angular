@@ -6,6 +6,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {EditEleveComponent} from "../edit-eleve/edit-eleve.component";
 import {PageEvent} from "@angular/material/paginator";
 import {DashboardService} from "../../shared/HttpServices/dashboard.service";
+import {AuthService} from "../../shared/HttpServices/auth.service";
 
 @Component({
   selector: 'app-liste-eleves',
@@ -20,6 +21,7 @@ export class ListeElevesComponent implements OnInit {
   totalDocs: number = 0;
   current_date = new Date();
   constructor(private elevesServices: ElevesService,
+              public authService: AuthService,
               private readonly ngZone: NgZone,
               private matdialog: MatDialog,
               private dashboardService: DashboardService,

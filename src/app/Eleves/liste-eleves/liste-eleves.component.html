@@ -52,7 +52,7 @@
               {{getDate(eleve.dateCreated) | date}}
             </td>
             <td>
-              <div class="toolbox">
+              <div class="toolbox" *ngIf="authService.isAdmin()">
                 <mat-icon (click)="delete(eleve._id)">delete</mat-icon>
                 <mat-icon (click)="edit(eleve)">mode_edit</mat-icon>
               </div>

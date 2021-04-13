@@ -23,7 +23,7 @@
           <div class="bottom" style="z-index: 1000;">
             <div class="row" style="margin-top:20px;">
               <div class="col col-md-2"></div>
-              <div class="col-md-5">
+              <div class="col-md-5" style="z-index: 10000;background: cornflowerblue;">
                 <div class="prepend-input">
                   <p>Elève</p>
                   <p>{{this.assignementTransmis.eleve.prenom}} {{this.assignementTransmis.eleve.nom}}</p>
@@ -55,7 +55,7 @@
                 margin-top: 15px;" *ngIf="isAdmin()" color="warn" mat-raised-button (click)="openSheet()">
                   Actions Administrateur
                 </button>
-                <div class="prepend-input" *ngIf="!isAdmin()" style="border-radius: 3px">
+                <div class="prepend-input" *ngIf="!isAdmin()" style="border-radius: 3px;margin-top: 15px;">
                   <p style="background: red;" class="icon-content"><mat-icon>lightbulb</mat-icon></p>
                   <p>Veuillez vous connecter avec un compte administrateur pour pouvoir effectuer <strong>une mise à jour ou une suppression</strong></p>
                 </div>
