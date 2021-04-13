@@ -12,6 +12,8 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatSelectModule } from '@angular/material/select';
 import {NgxEditorModule} from 'ngx-editor';
 import {DragDropModule} from "@angular/cdk/drag-drop";
+import {MatChipsModule} from "@angular/material/chips";
+import { RendreModalComponent } from './rendre-modal/rendre-modal.component';
 
 @NgModule({
   imports: [
@@ -24,6 +26,7 @@ import {DragDropModule} from "@angular/cdk/drag-drop";
     MatSelectModule,
     NgxEditorModule,
     DragDropModule,
+    MatChipsModule,
   ],
   declarations: [
     AssignmentDetailComponent,
@@ -31,6 +34,7 @@ import {DragDropModule} from "@angular/cdk/drag-drop";
     EditAssignmentComponent,
     AddAssignmentComponent,
     SingleAssignmentComponent,
+    RendreModalComponent,
   ],
 })
 export class AssignmentsModule {

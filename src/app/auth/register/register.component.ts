@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 import {MessagingService} from '../../shared/Others/messaging.service';
 import {AuthService} from '../../shared/HttpServices/auth.service';
 import {catchError, mergeMap} from "rxjs/operators";
+import {DashboardService} from "../../shared/HttpServices/dashboard.service";
 
 @Component({
   selector: 'app-register-component',
@@ -15,6 +16,7 @@ export class RegisterComponent implements OnInit {
   password = '';
   isAdmin = false;
   constructor(private router: Router,
+              private dashboardService: DashboardService,
               private messagingService: MessagingService,
               public authService: AuthService) { }
 
@@ -30,6 +32,7 @@ export class RegisterComponent implements OnInit {
     this.authService.inscription(this.login, this.password,this.isAdmin).pipe(
       mergeMap(data => {
         this.authService.setToken(data.token);
+        this.dashboardService.reloadCounts();
         return this.authService.me();
       }),
       catchError(error => {

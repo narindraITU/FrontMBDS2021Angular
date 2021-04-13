@@ -14,3 +14,95 @@ mat-card img{
   justify-content: space-between;
   flex-direction: row;
 }
+mat-card{
+  margin: 15px;
+  position:relative;
+  overflow: hidden;
+  padding: 0;
+  transition: all .3s;
+}
+mat-card-title,mat-card-subtitle{
+  margin-bottom: 15px;
+}
+.round-logo-matiere{
+  position: absolute;
+  left: -1rem;
+  top: -1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor:pointer;
+  width: 6rem;
+  height: 6rem;
+  border-radius: 50%;
+  background: dodgerblue;
+  transform: skew(0) translateX(-.25rem) translateY(-.25rem);
+  color: white;
+  transition: all .3s;
+  box-shadow: 0 1px 1px rgba(0,0,0,0.15),
+  0 2px 2px rgba(0,0,0,0.15),
+  0 4px 4px rgba(0,0,0,0.15),
+  0 8px 8px rgba(0,0,0,0.15);
+  mat-icon{
+    font-size: 3.5rem;
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+}
+mat-card:hover{
+  .round-logo-matiere{
+    transform: translateY(0) translateX(0);
+  }
+}
+.content{
+  width: 100%;
+  display: flex;
+  align-items: stretch;
+  justify-content: flex-start;
+  .logo-content{
+    min-width: 6rem;
+    flex: 1;
+  }
+  .title-content{
+    flex: 6;
+    margin-top: 15px;
+    padding-bottom: 15px;
+  }
+  .toolbox-content{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    &>div{
+      flex: .5;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: all .4s;
+      mat-icon{
+        width: 2rem;
+        height: 2rem;
+        font-size: 2rem;
+        color: white;
+      }
+      &:active{
+        filter: brightness(60%);
+      }
+    }
+  }
+}
+.bottom-content{
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  padding: 10px;
+  width: 100%;
+  &>div{
+    flex: 1;
+    padding: 5px;
+    p{
+      text-align: center;
+    }
+  }
+}

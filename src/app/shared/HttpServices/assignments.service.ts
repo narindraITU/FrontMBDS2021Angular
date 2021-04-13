@@ -38,6 +38,13 @@ export class AssignmentsService {
     const urlPagination = Configurations.baseURI + this.suffix + `?page=${nextPage}&rendu=${isRendu}`;
     return this.httpClient.get<Object>(urlPagination);
   }
+  rendre(id: string,note: number,description: string){
+    return this.httpClient.post<any>(Configurations.baseURI + this.suffix + '/rendre', {
+      id,
+      note,
+      description,
+    });
+  }
   peuplerBDJoin(): Observable<any> {
     const calls = [];
     data.forEach((a) => {

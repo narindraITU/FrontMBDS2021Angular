@@ -1,5 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {AssignmentModel} from "../assignment.model";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-single-assignment',
@@ -8,9 +9,13 @@ import {AssignmentModel} from "../assignment.model";
 })
 export class SingleAssignmentComponent implements OnInit {
   @Input()assignment: AssignmentModel;
-  constructor() { }
+  @Output()rendre: EventEmitter<AssignmentModel> = new EventEmitter<AssignmentModel>();
 
-  ngOnInit(): void {
+  constructor(private router: Router) { }
+
+  ngOnInit(): void {}
+
+  info() {
+    this.router.navigate(['/main','assignment',this.assignment._id])
   }
-
 }

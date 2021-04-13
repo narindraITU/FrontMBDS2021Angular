@@ -57,21 +57,21 @@
         <ngx-editor-menu [editor]="remarqueeditor"> </ngx-editor-menu>
           <ngx-editor
             [editor]="remarqueeditor"
-            placeholder="Type here..."
+            placeholder="Remarque"
             formControlName="remarqueItem"
           ></ngx-editor>
       <div>
-        <button mat-button matStepperPrevious>Précedent</button>
+        <button mat-button matStepperPrevious>Précédent</button>
         <button mat-button matStepperNext>Suivant</button>
       </div>
     </form>
   </mat-step>
   <mat-step>
     <ng-template matStepLabel>Done</ng-template>
-    <p>Vous avez terminer</p>
+    <p>Vous avez terminé</p>
     <div>
-      <button mat-button matStepperPrevious>Précedent</button>
-      <button mat-button (click)="stepper.reset()">Reset</button>
+      <button mat-button matStepperPrevious>Précédent</button>
+      <button mat-button (click)="stepper.reset()">Restaurer</button>
       <button mat-stroked-button
           (click)="submit();stepper.reset()"
           color="primary">
