@@ -1,82 +1,130 @@
-<mat-horizontal-stepper [linear]="isLinear" #stepper>
+<h1 style="padding: 15px;">Ajouter un nouveau devoir</h1>
+<mat-horizontal-stepper [linear]="true" #stepper>
   <mat-step [stepControl]="firstFormGroup">
-    <form [formGroup]="firstFormGroup" (ngSubmit)="FirstSubmit()">
-      <ng-template matStepLabel>Assignment et date de rendu</ng-template>
-      <mat-form-field>
-        <mat-label>Nom</mat-label>
-        <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
-      </mat-form-field><br/><br/>
-      <mat-form-field>
-        <mat-label>Date : </mat-label>
-        <input matInput #dateAssignement
-               name="Date"
-               [matDatepicker]="picker"
-               placeholder="Date"
-               [(ngModel)]="dateDevoir" [ngModelOptions]="{standalone: true}"/>
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-      </mat-form-field>
-      <div>
-        <button mat-button matStepperNext>Suivant</button>
-      </div>
-    </form>
+    <mat-card>
+      <mat-card-content>
+        <form [formGroup]="firstFormGroup">
+          <ng-template matStepLabel>Assignment et date de rendu</ng-template>
+          <div class="row">
+            <div class="col-md-12">
+              <mat-form-field>
+                <mat-label>Nom</mat-label>
+                <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+              </mat-form-field><br/><br/>
+              <p class="form_error" *ngIf="firstFormGroup.controls.firstCtrl.touched && firstFormGroup.controls.firstCtrl.errors">
+                Le champ nom du devoir est obligatoire
+              </p>
+            </div>
+            <div class="col-md-12">
+              <mat-form-field>
+                <mat-label>Date : </mat-label>
+                <input matInput #dateAssignement
+                      name="Date"
+                      [matDatepicker]="picker"
+                      placeholder="Date"
+                      [(ngModel)]="dateDevoir" [ngModelOptions]="{standalone: true}"/>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+            </div>
+            <div style="width: 100%">
+              <button style="width: 100%" mat-flat-button color="accent" matStepperNext>Suivant</button>
+            </div>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
   </mat-step>
   <mat-step [stepControl]="secondFormGroup">
-    <form [formGroup]="secondFormGroup" (ngSubmit)="SecondSubmit()">
-      <ng-template matStepLabel>Matière et Elève</ng-template>
-      <mat-form-field>
-        <mat-label>Matière</mat-label>
-        <mat-select [(ngModel)]="matiereItem" [ngModelOptions]="{standalone: true}">
-          <mat-option *ngFor="let matiere of matieres" [value]="matiere._id">
-            {{matiere.nomMatiere}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field><br/><br/>
-      <mat-form-field>
-        <mat-label>Elève</mat-label>
-        <mat-select [(ngModel)]="eleveItem" [ngModelOptions]="{standalone: true}">
-          <mat-option *ngFor="let eleve of eleves" [value]="eleve._id">
-            {{eleve.nom}} {{eleve.prenom}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-      <div>
-        <button mat-button matStepperPrevious>Précedent</button>
-        <button mat-button matStepperNext>Suivant</button>
+    <mat-card style="justify-content: right;">
+      <div class="col-md-6">
+        <mat-card-content>
+          <form [formGroup]="secondFormGroup">
+            <ng-template matStepLabel>Matière et Elève</ng-template>
+            <div class="row">
+              <div class="col-md-12">
+                <mat-form-field>
+                  <mat-label>Matière</mat-label>
+                  <mat-select [(ngModel)]="matiereItem" [ngModelOptions]="{standalone: true}" (selectionChange)="onMatiereChange()">
+                    <mat-option *ngFor="let matiere of matieres" [value]="matiere._id">
+                      {{matiere.nomMatiere}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field><br/><br/>
+              </div>
+              <div class="col-md-12">
+                <mat-form-field>
+                  <mat-label>Elève</mat-label>
+                  <mat-select [(ngModel)]="eleveItem" [ngModelOptions]="{standalone: true}" (selectionChange)="onEleveChange()">
+                    <mat-option *ngFor="let eleve of eleves" [value]="eleve._id">
+                      {{eleve.prenom}} {{eleve.nom}}
+                    </mat-option>
+                  </mat-select>
+              </mat-form-field>
+                <div class="col-md-12" *ngIf="secondFormGroup.controls.matiere.errors || secondFormGroup.controls.eleve.errors">
+                  <p class="error">La matière et l'élève sont obligatoires</p>
+                </div>
+              </div>
+              <div class="bottom_btn">
+                <button
+                  mat-flat-button
+                  color="primary"
+                  matStepperPrevious>Précédent</button>
+                <button
+                  mat-flat-button
+                  color="accent"
+                  matStepperNext>Suivant</button>
+              </div>
+            </div>
+          </form>
+        </mat-card-content><br/><br/>
+        <div *ngIf="currentEleve !== null">
+          <hr/>
+          <app-view-eleve
+              [eleve]="currentEleve"></app-view-eleve>
+        </div>
       </div>
-    </form>
+      <div class="col-md-6">
+        <div class="row-card" *ngIf="currentMatiere !== null" style="background: #F7F7F7;">
+          <div style="width: 100%;">
+            <app-view-matiere
+              [matiere]="currentMatiere"></app-view-matiere>
+          </div>
+        </div>
+      </div>
+    </mat-card>
   </mat-step>
   <mat-step [stepControl]="ThirdFormGroup">
-    <form [formGroup]="ThirdFormGroup" (ngSubmit)="ThirdSubmit()">
-      <ng-template matStepLabel>Note et remarque</ng-template>
-      <mat-form-field>
-        <mat-label>Note</mat-label>
-        <input matInput placeholder="10" formControlName="noteCtrl" required>
-      </mat-form-field><br/><br/>
-      <mat-label>Remarque</mat-label>
-        <ngx-editor-menu [editor]="remarqueeditor"> </ngx-editor-menu>
-          <ngx-editor
-            [editor]="remarqueeditor"
-            placeholder="Remarque"
-            formControlName="remarqueItem"
-          ></ngx-editor>
-      <div>
-        <button mat-button matStepperPrevious>Précédent</button>
-        <button mat-button matStepperNext>Suivant</button>
-      </div>
-    </form>
+    <mat-card>
+      <mat-card-content>
+        <form [formGroup]="ThirdFormGroup">
+          <ng-template matStepLabel>Note et remarque</ng-template>
+          <mat-form-field>
+            <mat-label>Note</mat-label>
+            <input type="number" matInput placeholder="10" formControlName="noteCtrl" required>
+          </mat-form-field><br/><br/>
+          <mat-label>Remarque</mat-label>
+            <ngx-editor-menu [editor]="remarqueeditor"> </ngx-editor-menu>
+              <ngx-editor
+                style="margin-bottom: 20px;"
+                [editor]="remarqueeditor"
+                placeholder="Type here..."
+                formControlName="remarqueItem"
+              ></ngx-editor>
+          <div class="bottom_btn" style="margin-top: 15px;">
+            <button
+              mat-flat-button
+              color="primary"
+              matStepperPrevious>Précédent</button>
+            <button
+              mat-flat-button
+              color="accent"
+              (click)="submit();">
+              Créer
+            </button>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
   </mat-step>
-  <mat-step>
-    <ng-template matStepLabel>Done</ng-template>
-    <p>Vous avez terminé</p>
-    <div>
-      <button mat-button matStepperPrevious>Précédent</button>
-      <button mat-button (click)="stepper.reset()">Restaurer</button>
-      <button mat-stroked-button
-          (click)="submit();stepper.reset()"
-          color="primary">
-    Sauver
-  </button>
-    </div>
-</mat-step>
 </mat-horizontal-stepper>

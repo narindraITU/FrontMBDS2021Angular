@@ -9,6 +9,9 @@ import {FormsModule, ReactiveFormsModule } from "@angular/forms";
 import {CommonModule, DatePipe} from "@angular/common";
 import { SingleAssignmentComponent } from './single-assignment/single-assignment.component';
 import {NgxEditorModule} from 'ngx-editor';
+import {DragDropModule} from "@angular/cdk/drag-drop";
+import {ViewMatiereComponent} from "../Matieres/view-matiere/view-matiere.component";
+import {ViewEleveComponent} from "../Eleves/view-eleve/view-eleve.component";
 import { RendreModalComponent } from './rendre-modal/rendre-modal.component';
 import { ActionSheetComponent } from './action-sheet/action-sheet.component';
 
@@ -27,6 +30,8 @@ import { ActionSheetComponent } from './action-sheet/action-sheet.component';
     EditAssignmentComponent,
     AddAssignmentComponent,
     SingleAssignmentComponent,
+    ViewMatiereComponent,
+    ViewEleveComponent,
     RendreModalComponent,
     ActionSheetComponent,
   ],

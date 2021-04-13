@@ -13,6 +13,7 @@ import {MatIconModule} from "@angular/material/icon";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatButtonModule} from "@angular/material/button";
 import {CommonModule} from "@angular/common";
+// import {ViewMatiereComponent} from "./view-matiere/view-matiere.component";
 
 @NgModule({
   imports: [
@@ -32,7 +33,9 @@ import {CommonModule} from "@angular/common";
     MatieresComponent,
     FicheMatiereComponent,
     ListeMatiereComponent,
-    SingleMatiereComponentComponent],
+    SingleMatiereComponentComponent,
+    // ViewMatiereComponent,
+  ],
   providers: [],
 })
 export class MatieresModule {

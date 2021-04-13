@@ -23,3 +23,9 @@ mat-drawer-container{
   align-items: center;
   width: 100%;
 }
+.form_error{
+  color: red;
+}
+.untouchable{
+  pointer-events: none !important;
+}

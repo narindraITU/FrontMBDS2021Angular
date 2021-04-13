@@ -28,6 +28,8 @@ export class EditAssignmentComponent implements OnInit {
   eleveItem: string;
 
   remarqueeditor: Editor;
+  currentMatiere: any = null;
+  currentEleve: any = null;
   
   constructor(private assignmentsService: AssignmentsService,
               private router: Router,
@@ -89,5 +91,23 @@ export class EditAssignmentComponent implements OnInit {
       console.log(data);
       this.eleves = this.eleves.concat(data.data);
     });
+  }
+
+  onMatiereChange(){
+    console.log("Matiere changed");
+     var result = this.matieres.filter(item => {
+      return item._id === this.matiereItem
+    })
+    this.currentMatiere = result[0];
+    console.log(this.currentMatiere);
+  }
+
+  onEleveChange(){
+    console.log("Eleve changed");
+    var result = this.eleves.filter(item => {
+      return item._id === this.eleveItem
+    })
+    this.currentEleve = result[0];
+    console.log(this.currentEleve);
   }
 }

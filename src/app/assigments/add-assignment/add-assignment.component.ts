@@ -25,7 +25,7 @@ export class AddAssignmentComponent implements OnInit {
   eleves: Eleves[] = [];
   note: number;
   remarque: string;
-  
+
   isLinear = false;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
@@ -36,6 +36,8 @@ export class AddAssignmentComponent implements OnInit {
 
   remarqueeditor: Editor;
   remarqueItem: '';
+  currentMatiere: any = null;
+  currentEleve: any = null;
 
   constructor(private assignmentsService: AssignmentsService,
               private messagingService: MessagingService,
@@ -49,7 +51,8 @@ export class AddAssignmentComponent implements OnInit {
       firstCtrl: ['', Validators.required]
     });
     this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required]
+      matiere: ['', Validators.required],
+      eleve: ['',Validators.required],
     });
     this.ThirdFormGroup = this._formBuilder.group({
       noteCtrl: [''],
@@ -61,32 +64,41 @@ export class AddAssignmentComponent implements OnInit {
   }
 
   getMatieres(){
+    const loader = this.messagingService.createSpinner();
     this.matieresService.loadAll().subscribe((data: any) => {
-      this.matieres = this.matieres.concat(data.data);
+      this.matieres = data.data;
+      loader.close();
+    }, error => {
+      console.log(error);
+      this.messagingService.openSnackBar('Une erreur est survenue',3000);
     });
   }
 
   getEleves(){
+    const loader = this.messagingService.createSpinner();
     this.elevesService.loadAll().subscribe((data: any) => {
-      console.log(data);
-      this.eleves = this.eleves.concat(data.data);
+      this.eleves = data.data;
+      loader.close();
+    }, error => {
+      console.log(error);
+      loader.close();
+      this.messagingService.openSnackBar('Une erreur est survenue',3000);
     });
   }
   submit(){
     const newAssignment = new AssignmentModel();
     newAssignment.rendu = false;
     newAssignment.dateDeRendu = this.dateDevoir;
-    newAssignment.nom = this.nomDevoir;
-    newAssignment.idMatiere = this.idmatiere;
-    newAssignment.idEleve = this.ideleve;
-    newAssignment.note = this.note;
-    newAssignment.remarques = this.remarque;
-
-    console.log("Show newAssignment !!!!!!!!!!!!!!!!!!!");
-    console.log(newAssignment);
+    newAssignment.nom = this.firstFormGroup.controls.firstCtrl.value;
+    newAssignment.idMatiere = this.currentMatiere._id;
+    newAssignment.idEleve = this.currentEleve._id;
+    newAssignment.note = this.ThirdFormGroup.controls.noteCtrl.value ? this.ThirdFormGroup.controls.noteCtrl.value: null;
+    newAssignment.remarques = this.ThirdFormGroup.controls.remarqueItem.value;
 
     const loader = this.messagingService.createSpinner();
-    this.assignmentsService.addAssignment(newAssignment).subscribe(message => {
+    this.assignmentsService
+      .addAssignment(newAssignment)
+      .subscribe(message => {
       loader.close();
       this.router.navigate(['main/home']);
     }, error => {
@@ -95,23 +107,20 @@ export class AddAssignmentComponent implements OnInit {
     });
   }
 
-  FirstSubmit(){
-    this.nomDevoir = this.firstFormGroup.get('firstCtrl').value;
-    console.log(this.nomDevoir);
-    console.log(this.dateDevoir);
+
+  onMatiereChange(){
+     var result = this.matieres.filter(item => {
+      return item._id === this.matiereItem
+    });
+    this.currentMatiere = result[0];
+    this.secondFormGroup.controls.matiere.setValue(this.currentMatiere._id);
   }
-  SecondSubmit(){
-    console.log(this.matiereItem);
-    this.idmatiere = this.matiereItem;
-    
-    console.log(this.eleveItem);
-    this.ideleve = this.eleveItem;
-  }
-  ThirdSubmit(){
-    this.note = this.ThirdFormGroup.get('noteCtrl').value;
-    console.log(this.note);
-    
-    this.remarque = this.ThirdFormGroup.get('remarqueItem').value;
-    console.log(this.remarque);
+
+  onEleveChange(){
+    var result = this.eleves.filter(item => {
+      return item._id === this.eleveItem
+    });
+    this.currentEleve = result[0];
+    this.secondFormGroup.controls.eleve.setValue(this.currentEleve._id);
   }
 }

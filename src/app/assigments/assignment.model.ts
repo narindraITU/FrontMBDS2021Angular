@@ -10,6 +10,6 @@ export class AssignmentModel {
   matiere: Matiere;
   idEleve: string;
   eleve: Eleves;
-  note: number;
+  note: number | null;
   remarques: string;
 }
