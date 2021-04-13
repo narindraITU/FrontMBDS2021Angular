@@ -63,8 +63,8 @@ export class DashboardPageComponent implements OnInit {
 
   formatSeries(tableau: any[]): any[]{
     const tableau_sort =  tableau.sort((a,b) => {
-      const date_a = moment(a.name,'dd-MM-YYYY');
-      const date_b = moment(b.name,'dd-MM-YYYY');
+      const date_a = moment(a.name,'DD-MM-YYYY');
+      const date_b = moment(b.name,'DD-MM-YYYY');
       return date_a.unix() - date_b.unix();
     });
     return tableau_sort;

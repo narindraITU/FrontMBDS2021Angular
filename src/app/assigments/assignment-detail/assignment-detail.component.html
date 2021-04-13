@@ -1,17 +1,77 @@
-<div class="container" *ngIf="assignementTransmis">
-  <mat-card>
-    <mat-card-title>{{assignementTransmis.nom}}</mat-card-title>
-    <mat-card-subtitle>{{assignementTransmis.dateDeRendu | date}}</mat-card-subtitle>
-    <mat-checkbox *ngIf="!assignementTransmis.rendu" (click)="onAssignmentRendu()">Rendu</mat-checkbox>
-    <div class="bottom-block">
-      <nav>
-          <button mat-stroked-button color="primary" (click)="onClickEdit()" [disabled]="!isAdmin()">
-            Modifier
-          </button>
-      </nav>
-      <button mat-flat-button color="accent" (click)="deleteAssignment()" [disabled]="!isAdmin()">
-        Supprimer
-      </button>
+<div class="content">
+  <mat-card *ngIf="assignementTransmis">
+    <div class="row">
+      <div class="col col-md-1">
+        <div class="left-content">
+          <div class="skewer"></div>
+          <div class="icon">
+            <mat-icon>{{assignementTransmis.matiere.iconeMatiere}}</mat-icon>
+          </div>
+          <div class="rendu-div" [ngClass]="assignementTransmis.rendu ? 'rendu' : 'non-rendu'"></div>
+        </div>
+      </div>
+      <div class="col col-md-11">
+        <div class="right-content">
+          <div class="top">
+            <div class="top-skewer"></div>
+            <div class="top-text">
+            <h1>{{assignementTransmis.nom}}</h1>
+            <p class="date">{{assignementTransmis.dateDeRendu | date: 'dd/MM/yyyy'}}</p>
+            </div>
+          </div>
+          <div class="bottom">
+            <div class="row" style="margin-top:20px;">
+              <div class="col col-md-3"></div>
+              <div class="col-md-5">
+                <div class="prepend-input">
+                  <p>Matière</p>
+                  <p>{{this.assignementTransmis.matiere.nomMatiere}}</p>
+                </div>
+                <div class="prepend-input">
+                  <p>Professeur</p>
+                  <p>{{this.assignementTransmis.matiere.nomProfesseur}}</p>
+                </div>
+                <div class="prepend-input">
+                  <p>Elève</p>
+                  <p>{{this.assignementTransmis.eleve.prenom}} {{this.assignementTransmis.eleve.nom}}</p>
+                </div>
+                <div class="prepend-input note-input" *ngIf="assignementTransmis.note!=null && assignementTransmis.note!=undefined">
+                  <p>Note</p>
+                  <div class="note">
+                    <strong>{{assignementTransmis.note}}</strong>
+                    <strong>20</strong>
+                  </div>
+                </div>
+                <div class="prepend-description" *ngIf="assignementTransmis.remarques">
+                  <p class="prepend-header"></p>
+                  <div class="prepend-content" [innerHTML]="this.assignementTransmis.remarques"></div>
+                </div>
+              </div>
+              <div class="col col-md-4">
+                <div class="flex-content-centered">
+                  <div class="image-container"
+                       [ngStyle]="{'background-image':'url(' + this.assignementTransmis.matiere.imageProf + ')'}">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+    <!--ng-container>
+      <mat-card-subtitle>{{assignementTransmis.dateDeRendu | date}}</mat-card-subtitle>
+      <mat-checkbox *ngIf="!assignementTransmis.rendu" (click)="onAssignmentRendu()">Rendu</mat-checkbox>
+      <div class="bottom-block">
+        <nav>
+            <button mat-stroked-button color="primary" (click)="onClickEdit()" [disabled]="!isAdmin()">
+              Modifier
+            </button>
+        </nav>
+        <button mat-flat-button color="accent" (click)="deleteAssignment()" [disabled]="!isAdmin()">
+          Supprimer
+        </button>
+      </div>
+    </ng-container-->
   </mat-card>
 </div>

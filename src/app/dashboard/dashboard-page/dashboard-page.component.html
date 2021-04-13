@@ -20,14 +20,14 @@
       <app-dashboard-card
         icone="bookmark_border"
         [loading]="!currentCounts"
-        [nombre]="currentCounts ? currentCounts.assignments_rendus : 0"
+        [nombre]="currentCounts ? currentCounts.assignments_nonrendus : 0"
         texte="Devoirs non rendus"></app-dashboard-card>
     </div>
     <div class="col-md-3">
       <app-dashboard-card
         icone="bookmark"
         [loading]="!currentCounts"
-        [nombre]="currentCounts ? currentCounts.assignments_nonrendus : 0"
+        [nombre]="currentCounts ? currentCounts.assignments_rendus : 0"
         texte="Devoirs rendus"></app-dashboard-card>
     </div>
   </div>
