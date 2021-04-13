@@ -49,11 +49,7 @@ mat-card-title,mat-card-subtitle{
     height: 3.5rem;
   }
 }
-mat-card:hover{
-  .round-logo-matiere{
-    transform: translateY(0) translateX(0);
-  }
-}
+
 .content{
   width: 100%;
   display: flex;
@@ -106,3 +102,38 @@ mat-card:hover{
     }
   }
 }
+mat-card:hover{
+  background: deepskyblue;
+  *{
+    transition: all .3s;
+    color: white;
+  }
+  .round-logo-matiere{
+    background: white;
+    transform: translateY(0) translateX(0);
+    mat-icon{
+      color: dodgerblue;
+    }
+  }
+  .toolbox-content{
+    &>div{
+      background: white !important;
+      &:nth-child(1){
+        border: 1px solid orangered;
+        border-top-right-radius: 5px;
+        mat-icon{
+          color: orangered;
+        }
+      }
+      &:nth-child(2){
+        border: 1px solid cornflowerblue;
+        border-bottom-right-radius: 5px;
+        mat-icon{
+          color: cornflowerblue;
+        }
+      }
+    }
+  }
+}
+
+

@@ -116,6 +116,10 @@ export class AssigmentsComponent implements OnInit {
   }
 
   drop($event: CdkDragDrop<any,any>) {
+    if($event.item.data.rendu){
+      console.log("rendus",$event.item.data);
+      return;
+    }
     this.rendre($event.item.data);
   }
 
@@ -136,6 +140,22 @@ export class AssigmentsComponent implements OnInit {
           this.messagingService.openSnackBar(error.data.message,3000);
         });
       }
+    });
+  }
+
+  dropNonRendu($event: CdkDragDrop<any, any>) {
+    if(!$event.item.data.rendu){
+      console.log("non rendus",$event.item.data);
+      return;
+    }
+    const loader = this.messagingService.createSpinner();
+    this.assignmentsService.annulerRendre($event.item.data._id).subscribe(data => {
+      loader.close();
+      this.messagingService.openSnackBar('Le rendu du devoir a été annulé',3000);
+      this.refreshData();
+    }, error => {
+      loader.close();
+      this.messagingService.openSnackBar(error.data.message,3000);
     });
   }
 }

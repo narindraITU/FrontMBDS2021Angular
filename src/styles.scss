@@ -17,3 +17,9 @@ mat-list-item{
 mat-drawer-container{
     min-height: 100vh;
 }
+.flex-content-centered{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}

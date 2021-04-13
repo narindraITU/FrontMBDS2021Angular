@@ -15,6 +15,12 @@ import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatIconModule} from "@angular/material/icon";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {MatSidenavModule} from "@angular/material/sidenav";
+import {DragDropModule} from "@angular/cdk/drag-drop";
+import {MatChipsModule} from "@angular/material/chips";
+import {MatButtonToggleModule} from "@angular/material/button-toggle";
+import {MatStepperModule} from "@angular/material/stepper";
+import {MatSelectModule} from "@angular/material/select";
+import {MatBottomSheetModule} from "@angular/material/bottom-sheet";
 
 const modules = [
   MatSnackBarModule,
@@ -33,6 +39,12 @@ const modules = [
   MatIconModule,
   MatTooltipModule,
   MatSidenavModule,
+  MatStepperModule,
+  MatSelectModule,
+  DragDropModule,
+  MatChipsModule,
+  MatButtonToggleModule,
+  MatBottomSheetModule,
 ];
 @NgModule({
   imports: [...modules],
