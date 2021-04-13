@@ -45,6 +45,11 @@ export class AssignmentsService {
       description,
     });
   }
+  annulerRendre(id: string){
+    return this.httpClient.post<any>(Configurations.baseURI + this.suffix + '/annuler/rendre', {
+      id,
+    });
+  }
   peuplerBDJoin(): Observable<any> {
     const calls = [];
     data.forEach((a) => {

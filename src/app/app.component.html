@@ -55,19 +55,7 @@
           </ng-container>
         </button>
       </mat-toolbar-row>
-      <mat-toolbar-row>
-        <button *ngIf="isConnected()" mat-flat-button color="primary" (click)="peuplerLaBase();">
-          Peupler la base
-        </button>
-      </mat-toolbar-row>
     </mat-toolbar>
-    <div class="navbar">
-      <div class="logo-container">
-        <nav><a routerLink="/home"></a> </nav>
-      </div>
-      <div class="user-container">
-      </div>
-    </div>
     <router-outlet></router-outlet>
   </main>
 

@@ -11,11 +11,13 @@ mat-list-item{
 mat-card{
   padding: 0;
   overflow: hidden;
+  z-index: 30;
 }
 .left-content{
   position: relative;
   align-self: stretch;
   .skewer{
+    content: '';
     width: 100%;
     position: absolute;
     left: 0;
@@ -54,6 +56,9 @@ mat-card{
     position: relative;
     height: 100%;
     z-index: 51;
+    &:after{
+      transition: all .3s;
+    }
     &.nonrendu{
       &:after{
         width: 10rem;
@@ -128,9 +133,29 @@ mat-card{
   }
 }
 .content{
+  position: relative;
   width: 100%;
+  background: cornflowerblue;
   height: 100%;
+  overflow: hidden;
   padding: 15px;
+}
+.content-skew{
+  width: 100%;
+  height: 100vh;
+  z-index: 25;
+  overflow: hidden;
+  position: absolute;
+  &:after{
+    right: -25%;
+    position: absolute;
+    top: 0;
+    content: '';
+    width: 50%;
+    height: 100%;
+    transform: skew(25deg);
+    background: white;
+  }
 }
 .col{
   padding: 0;
@@ -140,6 +165,9 @@ mat-card{
   height: 100%;
   overflow: hidden;
   max-height: 250px;
+  max-width: 250px;
+  margin-bottom: 15px;
+  margin-right: 15px;
   display: flex;
   width: 100%;
   justify-content: center;
@@ -178,6 +206,17 @@ mat-card{
     color: black;
   }
 }
+
+.icon-content{
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+    mat-icon{
+      font-size: 3rem;
+      width: 3rem;
+      height: 3rem;
+    }
+}
 .prepend-input.note-input > p{
 
   display: flex;
@@ -199,5 +238,27 @@ mat-card{
   }
   strong:nth-child(1){
     border-right: 1px solid white;
+  }
+}
+.prepend-description{
+  display: flex;
+  flex-direction: column;
+  .prepend-header{
+    width: 100%;
+    display: flex;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: darkblue;
+    color: white;
+    font-weight: bold;
+    margin-bottom: 0;
+  }
+  .prepend-content{
+    padding: 15px;
+    width: 100%;
+    background: white;
   }
 }

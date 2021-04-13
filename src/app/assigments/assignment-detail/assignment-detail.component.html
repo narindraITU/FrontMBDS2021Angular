@@ -1,4 +1,5 @@
 <div class="content">
+  <div class="content-skew"></div>
   <mat-card *ngIf="assignementTransmis">
     <div class="row">
       <div class="col col-md-1">
@@ -7,7 +8,7 @@
           <div class="icon">
             <mat-icon>{{assignementTransmis.matiere.iconeMatiere}}</mat-icon>
           </div>
-          <div class="rendu-div" [ngClass]="assignementTransmis.rendu ? 'rendu' : 'non-rendu'"></div>
+          <div class="rendu-div" [ngClass]="assignementTransmis.rendu ? 'rendu' : 'nonrendu'"></div>
         </div>
       </div>
       <div class="col col-md-11">
@@ -19,10 +20,47 @@
             <p class="date">{{assignementTransmis.dateDeRendu | date: 'dd/MM/yyyy'}}</p>
             </div>
           </div>
-          <div class="bottom">
+          <div class="bottom" style="z-index: 1000;">
             <div class="row" style="margin-top:20px;">
-              <div class="col col-md-3"></div>
+              <div class="col col-md-2"></div>
               <div class="col-md-5">
+                <div class="prepend-input">
+                  <p>Elève</p>
+                  <p>{{this.assignementTransmis.eleve.prenom}} {{this.assignementTransmis.eleve.nom}}</p>
+                </div>
+                <div class="prepend-input note-input"
+                     *ngIf="assignementTransmis.note!=null && assignementTransmis.note!=undefined">
+                  <p  style="padding:0 !important;">Note</p>
+                  <div class="note">
+                    <strong>{{assignementTransmis.note}}</strong>
+                    <strong>20</strong>
+                  </div>
+                </div>
+                <div class="prepend-description" *ngIf="assignementTransmis.remarques">
+                  <p class="prepend-header">Remarques</p>
+                  <div class="prepend-content" [innerHTML]="this.assignementTransmis.remarques"></div>
+                </div>
+                <div class="prepend-input" style="margin-top: 15px;">
+                  <p>Status</p>
+                  <p>{{this.assignementTransmis.rendu ? 'rendu' : 'pas encore rendu'}}</p>
+                </div>
+                <div class="flex-content-centered">
+                  <mat-button-toggle-group (ngModelChange)="update($event)" [(ngModel)]="assignementTransmis.rendu" aria-label="Font Style">
+                    <mat-button-toggle [value]="true">Rendu</mat-button-toggle>
+                    <mat-button-toggle [value]="false">Pas rendu</mat-button-toggle>
+                  </mat-button-toggle-group>
+                </div>
+                <button style="width:100%;
+                margin-bottom: 15px;
+                margin-top: 15px;" *ngIf="isAdmin()" color="warn" mat-raised-button (click)="openSheet()">
+                  Actions Administrateur
+                </button>
+                <div class="prepend-input" *ngIf="!isAdmin()" style="border-radius: 3px">
+                  <p style="background: red;" class="icon-content"><mat-icon>lightbulb</mat-icon></p>
+                  <p>Veuillez vous connecter avec un compte administrateur pour pouvoir effectuer <strong>une mise à jour ou une suppression</strong></p>
+                </div>
+              </div>
+              <div class="col col-md-5">
                 <div class="prepend-input">
                   <p>Matière</p>
                   <p>{{this.assignementTransmis.matiere.nomMatiere}}</p>
@@ -31,24 +69,7 @@
                   <p>Professeur</p>
                   <p>{{this.assignementTransmis.matiere.nomProfesseur}}</p>
                 </div>
-                <div class="prepend-input">
-                  <p>Elève</p>
-                  <p>{{this.assignementTransmis.eleve.prenom}} {{this.assignementTransmis.eleve.nom}}</p>
-                </div>
-                <div class="prepend-input note-input" *ngIf="assignementTransmis.note!=null && assignementTransmis.note!=undefined">
-                  <p>Note</p>
-                  <div class="note">
-                    <strong>{{assignementTransmis.note}}</strong>
-                    <strong>20</strong>
-                  </div>
-                </div>
-                <div class="prepend-description" *ngIf="assignementTransmis.remarques">
-                  <p class="prepend-header"></p>
-                  <div class="prepend-content" [innerHTML]="this.assignementTransmis.remarques"></div>
-                </div>
-              </div>
-              <div class="col col-md-4">
-                <div class="flex-content-centered">
+                <div class="flex-content-centered" style="height: 300px;">
                   <div class="image-container"
                        [ngStyle]="{'background-image':'url(' + this.assignementTransmis.matiere.imageProf + ')'}">
                   </div>
@@ -59,19 +80,5 @@
         </div>
       </div>
     </div>
-    <!--ng-container>
-      <mat-card-subtitle>{{assignementTransmis.dateDeRendu | date}}</mat-card-subtitle>
-      <mat-checkbox *ngIf="!assignementTransmis.rendu" (click)="onAssignmentRendu()">Rendu</mat-checkbox>
-      <div class="bottom-block">
-        <nav>
-            <button mat-stroked-button color="primary" (click)="onClickEdit()" [disabled]="!isAdmin()">
-              Modifier
-            </button>
-        </nav>
-        <button mat-flat-button color="accent" (click)="deleteAssignment()" [disabled]="!isAdmin()">
-          Supprimer
-        </button>
-      </div>
-    </ng-container-->
   </mat-card>
 </div>

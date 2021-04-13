@@ -8,26 +8,19 @@ import {AddAssignmentComponent} from "./add-assignment/add-assignment.component"
 import {FormsModule, ReactiveFormsModule } from "@angular/forms";
 import {CommonModule, DatePipe} from "@angular/common";
 import { SingleAssignmentComponent } from './single-assignment/single-assignment.component';
-import { MatStepperModule } from '@angular/material/stepper';
-import { MatSelectModule } from '@angular/material/select';
 import {NgxEditorModule} from 'ngx-editor';
-import {DragDropModule} from "@angular/cdk/drag-drop";
-import {MatChipsModule} from "@angular/material/chips";
 import { RendreModalComponent } from './rendre-modal/rendre-modal.component';
+import { ActionSheetComponent } from './action-sheet/action-sheet.component';
 
 @NgModule({
-  imports: [
-    AngularMaterialModule,
-    AssignmentsRoutingModule,
-    FormsModule,
-    CommonModule,
-    ReactiveFormsModule,
-    MatStepperModule,
-    MatSelectModule,
-    NgxEditorModule,
-    DragDropModule,
-    MatChipsModule,
-  ],
+    imports: [
+        AngularMaterialModule,
+        AssignmentsRoutingModule,
+        FormsModule,
+        CommonModule,
+        ReactiveFormsModule,
+        NgxEditorModule,
+    ],
   declarations: [
     AssignmentDetailComponent,
     AssigmentsComponent,
@@ -35,6 +28,7 @@ import { RendreModalComponent } from './rendre-modal/rendre-modal.component';
     AddAssignmentComponent,
     SingleAssignmentComponent,
     RendreModalComponent,
+    ActionSheetComponent,
   ],
 })
 export class AssignmentsModule {
