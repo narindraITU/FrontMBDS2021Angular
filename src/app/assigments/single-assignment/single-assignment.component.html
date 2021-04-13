@@ -18,7 +18,7 @@
       </mat-chip-list>
     </div>
     <div class="toolbox-content">
-      <div style="background: orangered" (click)="this.assignment.rendu ? this.rendre.emit(this.assignment) : ''">
+      <div style="background: orangered" (click)="!this.assignment.rendu ? this.rendre.emit(this.assignment) : ''">
           <mat-icon>
             {{assignment.rendu ? 'star' : 'star_outline'}}
           </mat-icon>
