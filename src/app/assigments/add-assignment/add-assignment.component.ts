@@ -36,6 +36,8 @@ export class AddAssignmentComponent implements OnInit {
 
   remarqueeditor: Editor;
   remarqueItem: '';
+  currentMatiere: any = null;
+  currentEleve: any = null;
 
   constructor(private assignmentsService: AssignmentsService,
               private messagingService: MessagingService,
@@ -113,5 +115,23 @@ export class AddAssignmentComponent implements OnInit {
     
     this.remarque = this.ThirdFormGroup.get('remarqueItem').value;
     console.log(this.remarque);
+  }
+
+  onMatiereChange(){
+    console.log("Matiere changed");
+     var result = this.matieres.filter(item => {
+      return item._id === this.matiereItem
+    })
+    this.currentMatiere = result[0];
+    console.log(this.currentMatiere);
+  }
+
+  onEleveChange(){
+    console.log("Eleve changed");
+    var result = this.eleves.filter(item => {
+      return item._id === this.eleveItem
+    })
+    this.currentEleve = result[0];
+    console.log(this.currentEleve);
   }
 }
