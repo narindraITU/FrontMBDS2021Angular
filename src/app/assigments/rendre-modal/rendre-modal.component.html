@@ -1,0 +1,50 @@
+<div class="body">
+  <h1>Rendre le devoir {{this.assignment.nom}}</h1>
+  <form [formGroup]="formulaire">
+    <div class="row">
+      <div class="col-md-12">
+        <mat-form-field style="width: 100%;">
+          <mat-label>Note</mat-label>
+          <input style="width: 100%;" type="number"
+                 [class.mat-error]="formulaire.controls.note.touched && formulaire.controls.note.errors"
+                 formControlName="note"
+                 matInput />
+        </mat-form-field>
+        <ng-container *ngIf="formulaire.controls.note.touched && formulaire.controls.note.errors">
+          <ul class="errors">
+            <li *ngIf="formulaire.controls.note.hasError('required')">Ce champ est obligatoire</li>
+            <li *ngIf="formulaire.controls.note.hasError('min') || formulaire.controls.note.hasError('max')">
+              La note doit être entre 0 et 20
+            </li>
+          </ul>
+        </ng-container>
+      </div>
+       <div class="col-md-12" style="margin-top: 15px;margin-bottom: 15px;">
+         <ngx-editor-menu [editor]="remarqueeditor"> </ngx-editor-menu>
+         <ngx-editor
+           [editor]="remarqueeditor"
+           placeholder="Remarque"
+           formControlName="description">
+         </ngx-editor>
+         <ng-container *ngIf="formulaire.controls.description.errors">
+           <ul class="errors">
+             <li *ngIf="formulaire.controls.description.hasError('required')">Ce champ est obligatoire</li>
+           </ul>
+         </ng-container>
+       </div>
+       <div class="col-md-12">
+         <button mat-flat-button
+                 style="margin-right: 15px;"
+                 (click)="close()"
+                 color="accent">
+           Fermer
+         </button>
+         <button mat-flat-button color="primary"
+                 (click)="submit()"
+                 [disabled]="!this.formulaire.valid">
+           Valider
+         </button>
+       </div>
+    </div>
+  </form>
+</div>

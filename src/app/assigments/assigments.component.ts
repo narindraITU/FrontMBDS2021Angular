@@ -5,6 +5,8 @@ import {MessagingService} from "../shared/Others/messaging.service";
 import {CdkVirtualScrollViewport} from "@angular/cdk/scrolling";
 import {filter, map, pairwise, tap, throttleTime} from "rxjs/operators";
 import {CdkDragDrop} from "@angular/cdk/drag-drop";
+import {MatDialog} from "@angular/material/dialog";
+import {RendreModalComponent} from "./rendre-modal/rendre-modal.component";
 
 @Component({
   selector: 'app-assigments',
@@ -26,6 +28,7 @@ export class AssigmentsComponent implements OnInit {
   @ViewChild('scrollerRendus') scrollerRendus: CdkVirtualScrollViewport;
   @ViewChild('scrollerNonRendus') scrollerNonRendus: CdkVirtualScrollViewport;
   constructor(private readonly assignmentsService: AssignmentsService,
+              private readonly matdialog: MatDialog,
               private readonly messagingService: MessagingService,
               private ngZone: NgZone) { }
 
@@ -33,9 +36,17 @@ export class AssigmentsComponent implements OnInit {
     this.getAssignmentsRendus();
     this.getAssignmentsNonRendus();
   }
+  refreshData(){
+    this.nextPageRendus = 1;
+    this.nextPageNonRendus = 1;
+    this.assignmentsRendus = [];
+    this.assignmentsNonRendus = [];
+    this.getAssignmentsRendus();
+    this.getAssignmentsNonRendus();
+  }
   getAssignmentsRendus(){
     if (!this.nextPageRendus) return;
-    this.assignmentsService
+    return this.assignmentsService
       .getAssignmentsPaginated(this.nextPageRendus,true)
       .subscribe((data: any) => {
         this.pageRendus = data.page;
@@ -46,7 +57,7 @@ export class AssigmentsComponent implements OnInit {
   }
   getAssignmentsNonRendus(){
     if (!this.nextPageNonRendus) return;
-    this.assignmentsService
+    return this.assignmentsService
       .getAssignmentsPaginated(this.nextPageNonRendus,false)
       .subscribe((data: any) => {
         this.pageNonRendus = data.page;
@@ -55,7 +66,7 @@ export class AssigmentsComponent implements OnInit {
         this.assignmentsNonRendus = this.assignmentsNonRendus.concat(data.docs);
       });
   }
-  ngAfterViewInit() {
+  initScrollRendus(){
     this.scrollerRendus
       .elementScrolled()
       .pipe(
@@ -76,6 +87,8 @@ export class AssigmentsComponent implements OnInit {
           this.getAssignmentsRendus(); // déjà prêt car nextPage re-initialisé à chaque requête
         });
       });
+  }
+  initScrollNonRendus(){
     this.scrollerNonRendus
       .elementScrolled()
       .pipe(
@@ -97,8 +110,32 @@ export class AssigmentsComponent implements OnInit {
         });
       });
   }
+  ngAfterViewInit() {
+    this.initScrollRendus();
+    this.initScrollNonRendus();
+  }
 
   drop($event: CdkDragDrop<any,any>) {
+    this.rendre($event.item.data);
+  }
 
+  rendre(assignment: AssignmentModel) {
+    console.log(assignment);
+    const matdialog = this.matdialog.open<RendreModalComponent>(RendreModalComponent, {
+      data: {assignment}
+    });
+    matdialog.afterClosed().subscribe(data => {
+      if(data){
+        const loader = this.messagingService.createSpinner();
+        this.assignmentsService.rendre(data.id,data.note,data.description).subscribe(data => {
+          loader.close();
+          this.messagingService.openSnackBar('Le devoir a été rendu',3000);
+          this.refreshData();
+        }, error => {
+          loader.close();
+          this.messagingService.openSnackBar(error.data.message,3000);
+        });
+      }
+    });
   }
 }

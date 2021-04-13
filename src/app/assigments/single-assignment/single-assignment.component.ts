@@ -13,12 +13,7 @@ export class SingleAssignmentComponent implements OnInit {
 
   constructor(private router: Router) { }
 
-  ngOnInit(): void {
-  }
-
-  information(_id: string) {
-
-  }
+  ngOnInit(): void {}
 
   info() {
     this.router.navigate(['/main','assignment',this.assignment._id])

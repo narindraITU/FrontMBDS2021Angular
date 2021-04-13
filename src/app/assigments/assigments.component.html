@@ -6,18 +6,24 @@
   </div>
   <div class="row">
     <div class="col-md-6">
-      <h1>Devoirs rendus</h1>
-      <cdk-virtual-scroll-viewport cdkDropList (cdkDropListDropped)="drop($event)" itemSize="50" class="example-viewport" #scrollerRendus>
-        <ng-container *cdkVirtualFor="let assignment of assignmentsRendus">
-          <app-single-assignment cdkDrag [assignment]="assignment"></app-single-assignment>
+      <h1>Devoirs non-rendus</h1>
+      <cdk-virtual-scroll-viewport cdkDropList
+                                   (cdkDropListDropped)="drop($event)"
+                                   itemSize="50"
+                                   class="example-viewport" #scrollerNonRendus>
+        <ng-container *cdkVirtualFor="let assignment of assignmentsNonRendus">
+          <app-single-assignment
+            [cdkDragData]="assignment"
+            cdkDrag
+            (rendre)="rendre(assignment)" [assignment]="assignment"></app-single-assignment>
         </ng-container>
       </cdk-virtual-scroll-viewport>
     </div>
     <div class="col-md-6">
-      <h1>Devoirs non-rendus</h1>
-      <cdk-virtual-scroll-viewport cdkDropList (cdkDropListDropped)="drop($event)" itemSize="50" class="example-viewport" #scrollerNonRendus>
-        <ng-container *cdkVirtualFor="let assignment of assignmentsNonRendus">
-          <app-single-assignment cdkDrag [assignment]="assignment"></app-single-assignment>
+      <h1>Devoirs rendus</h1>
+      <cdk-virtual-scroll-viewport cdkDropList (cdkDropListDropped)="drop($event)" itemSize="50" class="example-viewport" #scrollerRendus>
+        <ng-container *cdkVirtualFor="let assignment of assignmentsRendus">
+          <app-single-assignment [assignment]="assignment"></app-single-assignment>
         </ng-container>
       </cdk-virtual-scroll-viewport>
     </div>
