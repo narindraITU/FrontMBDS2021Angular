@@ -16,14 +16,14 @@ import { RendreModalComponent } from './rendre-modal/rendre-modal.component';
 import { ActionSheetComponent } from './action-sheet/action-sheet.component';
 
 @NgModule({
-    imports: [
-        AngularMaterialModule,
-        AssignmentsRoutingModule,
-        FormsModule,
-        CommonModule,
-        ReactiveFormsModule,
-        NgxEditorModule,
-    ],
+  imports: [
+    AngularMaterialModule,
+    AssignmentsRoutingModule,
+    FormsModule,
+    CommonModule,
+    ReactiveFormsModule,
+    NgxEditorModule,
+  ],
   declarations: [
     AssignmentDetailComponent,
     AssigmentsComponent,
@@ -35,6 +35,9 @@ import { ActionSheetComponent } from './action-sheet/action-sheet.component';
     RendreModalComponent,
     ActionSheetComponent,
   ],
+  exports: [
+    SingleAssignmentComponent
+  ]
 })
 export class AssignmentsModule {
 }

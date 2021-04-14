@@ -94,6 +94,9 @@ export class AssignmentDetailComponent implements OnInit {
           this.messagingService.openSnackBar(error.data.message,3000);
         });
       }
+      else{
+        this.assignementTransmis.rendu = false;
+      }
     });
   }
   nePasRendre(){

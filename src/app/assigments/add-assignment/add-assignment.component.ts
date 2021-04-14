@@ -9,6 +9,7 @@ import {Router} from "@angular/router";
 import {MessagingService} from "../../shared/Others/messaging.service";
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Editor } from 'ngx-editor';
+import {DashboardService} from "../../shared/HttpServices/dashboard.service";
 
 
 @Component({
@@ -41,6 +42,7 @@ export class AddAssignmentComponent implements OnInit {
 
   constructor(private assignmentsService: AssignmentsService,
               private messagingService: MessagingService,
+              private dashboardService: DashboardService,
               private router: Router,
               private matieresService: MatieresService,
               private _formBuilder: FormBuilder,
@@ -94,13 +96,14 @@ export class AddAssignmentComponent implements OnInit {
     newAssignment.idEleve = this.currentEleve._id;
     newAssignment.note = this.ThirdFormGroup.controls.noteCtrl.value ? this.ThirdFormGroup.controls.noteCtrl.value: null;
     newAssignment.remarques = this.ThirdFormGroup.controls.remarqueItem.value;
-
     const loader = this.messagingService.createSpinner();
     this.assignmentsService
       .addAssignment(newAssignment)
       .subscribe(message => {
       loader.close();
-      this.router.navigate(['main/home']);
+      this.dashboardService.reloadCounts();
+        this.messagingService.openSnackBar('Le devoir a été ajouté', 3000);
+        this.router.navigate(['main/home']);
     }, error => {
       loader.close();
       this.messagingService.openSnackBar('Une erreur est survenue', 3000);
