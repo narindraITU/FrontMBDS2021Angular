@@ -24,6 +24,14 @@ export class AssignmentsService {
   addAssignment(assignment: AssignmentModel): Observable<any>{
     return this.httpClient.post<AssignmentModel>(Configurations.baseURI + this.suffix, assignment);
   }
+  byEleve(page: number,idEleve: string){
+    return this.httpClient.get<any>(Configurations.baseURI + this.suffix + '/byEleves', {
+      params: {
+        id: idEleve,
+        page: `${page}`,
+      }
+    });
+  }
   updateAssignment(assignment: AssignmentModel): Observable<any>{
     this.loggingService.log(assignment, 'updated');
     return this.httpClient.put<AssignmentModel>(Configurations.baseURI + this.suffix, assignment);

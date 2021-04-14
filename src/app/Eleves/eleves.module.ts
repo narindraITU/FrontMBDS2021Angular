@@ -12,6 +12,9 @@ import { EditEleveComponent } from './edit-eleve/edit-eleve.component';
 import {MatButtonModule} from "@angular/material/button";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatTableModule} from "@angular/material/table";
+import { DescriElevesComponent } from './descri-eleves/descri-eleves.component';
+import {AssignmentsModule} from "../assigments/assignments.module";
+import {MatDialogModule} from "@angular/material/dialog";
 
 @NgModule({
   imports: [
@@ -26,12 +29,15 @@ import {MatTableModule} from "@angular/material/table";
     MatButtonModule,
     MatPaginatorModule,
     MatTableModule,
+    AssignmentsModule,
+    MatDialogModule,
   ],
   exports: [],
   declarations: [
     ElevesComponent,
     ListeElevesComponent,
-    EditEleveComponent],
+    EditEleveComponent,
+    DescriElevesComponent],
   providers: [],
 })
 export class ElevesModule {

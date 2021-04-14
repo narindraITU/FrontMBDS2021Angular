@@ -8,7 +8,7 @@
     </div>
     <div class="title-content">
       <mat-card-title>{{assignment.nom}}</mat-card-title>
-      <mat-card-subtitle>Narindra RANDRIANARISOA</mat-card-subtitle>
+      <mat-card-subtitle>{{assignment.eleve.nom}} {{assignment.eleve.prenom}}</mat-card-subtitle>
       <mat-chip-list aria-label="Fish selection">
         <mat-chip selected>{{this.assignment.dateDeRendu | date}}</mat-chip>
         <mat-chip color="primary" selected>{{this.assignment.matiere.nomMatiere}}</mat-chip>

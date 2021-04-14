@@ -1,14 +1,15 @@
 <div class="row">
   <div class="col col-md-6" *ngIf="assignment">
     <h1>Edition de l'assignment {{assignment.nom}} {{assignment.idMatiere}} {{assignment.idEleve}}</h1>
-    <form class="form" ngForm #assignmentForm>
+    <form class="form" [formGroup]="formulaire" #assignmentForm>
       <mat-form-field>
         <mat-label>Nom </mat-label>
         <input matInput #nomAssignment
                required
                name="nom"
-               placeholder="Edition du nom"
-               [(ngModel)]="nomDevoir" [ngModelOptions]="{standalone: true}"/>
+               formControlName="nom"
+               placeholder="Edition du nom"/>
+        <mat-error *ngIf="formulaire.controls.nom.errors">Ce champ est obligatoire</mat-error>
       </mat-form-field>
       <mat-form-field>
         <mat-label>Date </mat-label>
@@ -17,6 +18,7 @@
                required
                [matDatepicker]="picker"
                placeholder="Edition de la date"
+               [ngModelOptions]="{standalone: true}"
                [(ngModel)]="dateDevoir" />
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
@@ -39,18 +41,28 @@
       </mat-form-field>
       <mat-form-field>
         <mat-label>Note</mat-label>
-        <input matInput placeholder="10" [(ngModel)]="note" [ngModelOptions]="{standalone: true}"/>
+        <input
+          name="note"
+          formnovalidate
+          [formControl]="formulaire.controls['note']"
+          matInput
+          placeholder="note"/>
+        <mat-error *ngIf="formulaire.controls.note.errors">
+          La note doit être entre 0 et 20
+        </mat-error>
       </mat-form-field><br/><br/>
       <div style="overflow: auto;">
         <mat-label>Remarque</mat-label>
         <ngx-editor-menu [editor]="remarqueeditor"> </ngx-editor-menu>
           <ngx-editor
             [editor]="remarqueeditor"
-            placeholder="Type here..."
-            [(ngModel)]="remarque" [ngModelOptions]="{standalone: true}"
+            placeholder="Remarque"
+            formControlName="remarque"
           ></ngx-editor>
       </div>
       <button mat-stroked-button
+              [disabled]="!this.formulaire.valid"
+              style="margin-top: 20px;"
               (click)="submit();"
               color="primary">
         Sauver
@@ -58,14 +70,14 @@
     </form>
   </div>
   <div class="col col-md-6">
-    <div class="row-card" *ngIf="currentMatiere !== null" style="background: #F7F7F7;">
+    <div class="row-card" *ngIf="currentMatiere" style="background: #F7F7F7;">
       <div style="width: 100%;">
         <app-view-matiere
           [matiere]="currentMatiere"></app-view-matiere>
       </div>
     </div>
     <br/><br/><br/>
-    <div *ngIf="currentEleve !== null">
+    <div *ngIf="currentEleve">
       <app-view-eleve
           [eleve]="currentEleve"></app-view-eleve>
     </div>

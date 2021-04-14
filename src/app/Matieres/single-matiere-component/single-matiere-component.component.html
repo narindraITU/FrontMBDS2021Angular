@@ -6,14 +6,12 @@
         </mat-icon>
       </div>
       <div class="toolbox">
-        <div class="square-button" (click)="onDelete.emit(matiere._id)" style="background: red;">
+        <div
+          *ngIf="this.authService.isAdmin()"
+          class="square-button"
+          (click)="onDelete.emit(matiere._id)" style="background: red;">
           <mat-icon>
             delete
-          </mat-icon>
-        </div>
-        <div class="square-button" (click)="onEdit.emit(matiere._id)" style="background: forestgreen">
-          <mat-icon>
-            mode_edit
           </mat-icon>
         </div>
       </div>

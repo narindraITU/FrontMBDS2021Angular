@@ -56,6 +56,6 @@ export class AuthService {
     return this.currentToken != null;
   }
   isAdmin(){
-    return this.isLoggedIn() && this.currentUser.value.isAdmin;
+    return this.isLoggedIn() && this.currentUser.value!=null && this.currentUser.value.isAdmin;
   }
 }

@@ -8,6 +8,7 @@ import {HttpEventType} from "@angular/common/http";
 import {MessagingService} from "../../shared/Others/messaging.service";
 import {Matiere} from "../matiere.model";
 import {DashboardService} from "../../shared/HttpServices/dashboard.service";
+import {AuthService} from "../../shared/HttpServices/auth.service";
 
 @Component({
   selector: 'app-liste-matiere',
@@ -32,6 +33,7 @@ export class ListeMatiereComponent implements OnInit {
     image: new FormControl(null,Validators.required),
   });
   constructor(private matDialog: MatDialog,
+              private authService: AuthService,
               private matieresService: MatieresService,
               private dashboardService: DashboardService,
               private messagingService: MessagingService) { }
