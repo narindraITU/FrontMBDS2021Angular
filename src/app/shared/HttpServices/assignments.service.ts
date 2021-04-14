@@ -5,6 +5,8 @@ import {LoggingService} from '../Others/logging.service';
 import {HttpClient} from '@angular/common/http';
 import {data} from '../data';
 import {Configurations} from '../../Configurations/configurations';
+import {Matiere} from "../../Matieres/matiere.model";
+import {Eleves} from "../../Eleves/eleves.model";
 
 @Injectable({
   providedIn: 'root'
@@ -45,9 +47,16 @@ export class AssignmentsService {
   getAssignmentsPaginated(
     nextPage: Number = 1,
     isRendu: boolean,
+    matieres: Matiere[] = [],
+    eleves: Eleves[] = [],
   ): Observable<Object> {
-    const urlPagination = Configurations.baseURI + this.suffix + `?page=${nextPage}&rendu=${isRendu}`;
-    return this.httpClient.get<Object>(urlPagination);
+    const urlPagination = Configurations.baseURI + this.suffix;
+    return this.httpClient.get<Object>(urlPagination,{
+      params: {
+        matieres: matieres.length > 0 ? matieres.map(value => value._id).join('|'): null,
+        eleves: eleves.length > 0 ? eleves.map(value => value._id).join('|'): null,
+      }
+    });
   }
   rendre(id: string,note: number,description: string){
     return this.httpClient.post<any>(Configurations.baseURI + this.suffix + '/rendre', {

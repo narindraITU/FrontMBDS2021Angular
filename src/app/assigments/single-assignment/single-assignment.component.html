@@ -11,7 +11,10 @@
       <mat-card-subtitle>{{assignment.eleve.nom}} {{assignment.eleve.prenom}}</mat-card-subtitle>
       <mat-chip-list aria-label="Fish selection">
         <mat-chip selected>{{this.assignment.dateDeRendu | date}}</mat-chip>
-        <mat-chip color="primary" selected>{{this.assignment.matiere.nomMatiere}}</mat-chip>
+        <mat-chip color="primary" selected>
+          <mat-icon>{{this.assignment.matiere.iconeMatiere}}</mat-icon>
+          {{this.assignment.matiere.nomMatiere}} - {{this.assignment.matiere.nomProfesseur}}
+        </mat-chip>
         <mat-chip *ngIf="assignment.note!=null && assignment.note!=undefined" color="accent" selected>
           {{this.assignment.note}} / 20
         </mat-chip>

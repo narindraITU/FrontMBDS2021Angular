@@ -14,6 +14,7 @@ import {ViewMatiereComponent} from "../Matieres/view-matiere/view-matiere.compon
 import {ViewEleveComponent} from "../Eleves/view-eleve/view-eleve.component";
 import { RendreModalComponent } from './rendre-modal/rendre-modal.component';
 import { ActionSheetComponent } from './action-sheet/action-sheet.component';
+import {MatAutocompleteModule} from "@angular/material/autocomplete";
 
 @NgModule({
   imports: [
@@ -23,6 +24,7 @@ import { ActionSheetComponent } from './action-sheet/action-sheet.component';
     CommonModule,
     ReactiveFormsModule,
     NgxEditorModule,
+    MatAutocompleteModule,
   ],
   declarations: [
     AssignmentDetailComponent,

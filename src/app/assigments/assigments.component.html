@@ -5,6 +5,41 @@
     </a>
     <button mat-flat-button color="primary" (click)="peuplerLaBase()">Peupler</button>
   </div>
+  <div class="row" style="padding: 30px;">
+    <mat-form-field style="width: 100%;" class="example-chip-list">
+      <mat-label>Matières</mat-label>
+      <mat-chip-list #chipList aria-label="Fruit selection">
+        <mat-chip
+          *ngFor="let matiere of selectedMatieres"
+          [selectable]="true"
+          [removable]="true"
+          (removed)="remove(matiere)">
+          {{matiere.nomMatiere}}  - {{matiere.nomProfesseur}}
+          <mat-icon matChipRemove>delete</mat-icon>
+        </mat-chip>
+        <input
+          placeholder="Matière"
+          #matiereInput
+          [formControl]="matiere_control"
+          [matAutocomplete]="auto"
+          [matChipInputFor]="chipList"
+          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+          (matChipInputTokenEnd)="add($event)">
+      </mat-chip-list>
+      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+        <mat-option *ngFor="let matieres of filteredMatieres | async" [value]="matieres._id">
+          {{matieres.nomMatiere}} - {{matieres.nomProfesseur}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+    <button
+      mat-flat-button
+      style="width: 100%;"
+      color="primary"
+      (click)="refreshData()">
+      Rechercher
+    </button>
+  </div>
   <div class="row">
     <div class="col-md-6"
          #nonRenduList="cdkDropList"
