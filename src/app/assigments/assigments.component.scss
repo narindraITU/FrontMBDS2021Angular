@@ -14,6 +14,14 @@
 }
 .ajouterBtn{
   padding: 15px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 1px;
+  justify-content: flex-start;
+  &>*{
+    flex: 1;
+  }
 }
 
 h1{
