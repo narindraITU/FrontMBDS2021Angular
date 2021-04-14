@@ -8,6 +8,7 @@ import {HttpEventType} from "@angular/common/http";
 import {MessagingService} from "../../shared/Others/messaging.service";
 import {Matiere} from "../matiere.model";
 import {DashboardService} from "../../shared/HttpServices/dashboard.service";
+import {PageEvent} from "@angular/material/paginator";
 
 @Component({
   selector: 'app-liste-matiere',
@@ -114,4 +115,10 @@ export class ListeMatiereComponent implements OnInit {
   edit($event: string) {
 
   }
+
+  updatePage($event: PageEvent) {
+    console.log($event.pageIndex);
+    this.page = $event.pageIndex + 1;
+    this.loadData();
+}
 }

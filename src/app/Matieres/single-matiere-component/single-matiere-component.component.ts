@@ -1,5 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Matiere} from "../matiere.model";
+import {MessagingService} from "../../shared/Others/messaging.service";
+import { MatieresService } from "../../shared/HttpServices/matieres.service";
 
 @Component({
   selector: 'app-single-matiere-component',
@@ -10,9 +12,10 @@ export class SingleMatiereComponentComponent implements OnInit {
   @Input()matiere: Matiere;
   @Output() onDelete: EventEmitter<string> = new EventEmitter<string>();
   @Output() onEdit: EventEmitter<string> = new EventEmitter<string>();
-  constructor() { }
+  
+  constructor(private messagingService: MessagingService,
+              private matiereServices: MatieresService) { }
 
   ngOnInit(): void {
   }
-
 }
