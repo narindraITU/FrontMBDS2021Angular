@@ -13,7 +13,7 @@ import {MatIconModule} from "@angular/material/icon";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatButtonModule} from "@angular/material/button";
 import {CommonModule} from "@angular/common";
-// import {ViewMatiereComponent} from "./view-matiere/view-matiere.component";
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   imports: [
@@ -27,6 +27,7 @@ import {CommonModule} from "@angular/common";
     ReactiveFormsModule,
     MatButtonModule,
     CommonModule,
+    MatPaginatorModule,
   ],
   exports: [],
   declarations: [
