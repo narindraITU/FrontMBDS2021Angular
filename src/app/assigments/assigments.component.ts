@@ -7,6 +7,9 @@ import {filter, map, pairwise, tap, throttleTime} from "rxjs/operators";
 import {CdkDragDrop} from "@angular/cdk/drag-drop";
 import {MatDialog} from "@angular/material/dialog";
 import {RendreModalComponent} from "./rendre-modal/rendre-modal.component";
+import {forkJoin} from "rxjs";
+import {ProgressComponent} from "../BaseComponents/Progress/ProgressComponent";
+import {DashboardService} from "../shared/HttpServices/dashboard.service";
 
 @Component({
   selector: 'app-assigments',
@@ -29,9 +32,37 @@ export class AssigmentsComponent implements OnInit {
   @ViewChild('scrollerNonRendus') scrollerNonRendus: CdkVirtualScrollViewport;
   constructor(private readonly assignmentsService: AssignmentsService,
               private readonly matdialog: MatDialog,
+              private dashboardService: DashboardService,
               private readonly messagingService: MessagingService,
               private ngZone: NgZone) { }
 
+
+  peuplerLaBase() {
+    const spinner = this.messagingService.createSpinner();
+    const progress = this.matdialog.open(ProgressComponent, {
+      width: '500px',
+      height: '150px',
+      data: {progress: 0}
+    });
+    const observables = this.assignmentsService
+      .peuplerBDJoin();
+    let nombre = observables.length;
+    let progression = 0;
+    forkJoin(
+      observables.map(o => o.pipe(tap(() => {
+        progress.componentInstance.data.progress = Math.round(100 * progression/ nombre);
+        return progression++;
+      })))).subscribe(data => {
+          this.messagingService.openSnackBar('la base a été peuplée',3000);
+          this.dashboardService.reloadCounts();
+          progress.close();
+          spinner.close();
+      }, error => {
+          this.messagingService.openSnackBar('Une erreur est survenue',3000);
+          progress.close();
+          spinner.close();
+    });
+  }
   ngOnInit(): void {
     this.getAssignmentsRendus();
     this.getAssignmentsNonRendus();
@@ -151,6 +182,7 @@ export class AssigmentsComponent implements OnInit {
     const loader = this.messagingService.createSpinner();
     this.assignmentsService.annulerRendre($event.item.data._id).subscribe(data => {
       loader.close();
+      this.dashboardService.reloadCounts();
       this.messagingService.openSnackBar('Le rendu du devoir a été annulé',3000);
       this.refreshData();
     }, error => {

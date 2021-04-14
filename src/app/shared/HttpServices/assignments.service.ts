@@ -24,6 +24,9 @@ export class AssignmentsService {
   addAssignment(assignment: AssignmentModel): Observable<any>{
     return this.httpClient.post<AssignmentModel>(Configurations.baseURI + this.suffix, assignment);
   }
+  peupler(data: any): Observable<any>{
+    return this.httpClient.post<AssignmentModel>(Configurations.baseURI + this.suffix + '/peupler',data);
+  }
   byEleve(page: number,idEleve: string){
     return this.httpClient.get<any>(Configurations.baseURI + this.suffix + '/byEleves', {
       params: {
@@ -58,15 +61,15 @@ export class AssignmentsService {
       id,
     });
   }
-  peuplerBDJoin(): Observable<any> {
+  peuplerBDJoin(): Observable<any>[] {
     const calls = [];
     data.forEach((a) => {
       const new_assignment = new AssignmentModel();
       new_assignment.nom = a.nom;
       new_assignment.dateDeRendu = new Date(a.dateDeRendu);
-      new_assignment.rendu = false;
-      calls.push(this.addAssignment(new_assignment));
+      new_assignment.rendu = a.rendu;
+      calls.push(this.peupler(new_assignment));
     });
-    return forkJoin(calls);
+    return calls;
   }
 }

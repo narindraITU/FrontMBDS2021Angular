@@ -79,10 +79,11 @@ export class DashboardPageComponent implements OnInit {
   }
   orderMonthYears(tableau: any[]): any[]{
     const tableau_sort =  tableau.sort((a,b) => {
-      const splitted_a = a.split("-");
-      const splitted_b = a.split("-");
-      const date_a = parseInt(splitted_a[1] + splitted_a[0]);
-      const date_b = parseInt(splitted_b[1] + splitted_b[0]);
+      const splitted_a = a.name.split("-");
+      const splitted_b = b.name.split("-");
+      const date_a = parseInt(splitted_a[1] + '0' + splitted_a[0]);
+      const date_b = parseInt(splitted_b[1] + '0' + splitted_b[0]);
+      console.log(date_a,date_b);
       return date_a - date_b;
     });
     return tableau_sort;
@@ -115,7 +116,6 @@ export class DashboardPageComponent implements OnInit {
 
       // data assignments
       this.dataAssignments.days.data = series;
-
       // data matieres
       const series_matieres = [];
       series_matieres.push({
@@ -139,7 +139,6 @@ export class DashboardPageComponent implements OnInit {
       this.dataEleves.days.data = series_eleves;
       this.dataAssignments.days.isLoading = false;
 
-
       this.dataAssignments.year.data = this.orderYears(data.assignments_ans.map(value => ({
           name: value._id.dateCreated,
           value: value.count,
@@ -156,6 +155,7 @@ export class DashboardPageComponent implements OnInit {
     });
   }
   ngOnInit(): void {
+    this.dashboardService.reloadCounts();
     this.dashboardService.getCounts().subscribe(data => {
       this.currentCounts = data;
     }, error => {

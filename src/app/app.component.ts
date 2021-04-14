@@ -61,17 +61,6 @@ export class AppComponent implements OnInit{
         return this.authService.isLoggedIn();
   }
 
-  peuplerLaBase() {
-    const loader = this.messagingService.createSpinner();
-    this.assignmentService.peuplerBDJoin().subscribe(data => {
-      this.messagingService.openSnackBar('La base a été peuplée',3000);
-      loader.close();
-    }, error => {
-      this.messagingService.openSnackBar('Une erreur est survenue',3000);
-      loader.close();
-    });
-  }
-
   goTo(path: string[]) {
     this.router.navigate(path);
   }
