@@ -16,7 +16,7 @@ export class SingleMatiereComponentComponent implements OnInit {
 
   constructor(private messagingService: MessagingService,
               private matiereServices: MatieresService,
-              private authservice: AuthService) { }
+              public authService: AuthService) { }
 
   ngOnInit(): void {
   }

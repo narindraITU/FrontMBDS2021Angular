@@ -97,12 +97,16 @@
             (onEdit)="edit($event)"
             (onDelete)="delete($event)" [matiere]="item"></app-single-matiere-component>
         </div>
-      <div class="paginator-container">
-        <mat-paginator
-          (page)="updatePage($event)"
-          [length]="totalDocs"
-          [pageSize]="10">
-        </mat-paginator>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="paginator-container">
+          <mat-paginator
+            (page)="updatePage($event)"
+            [length]="totalDocs"
+            [pageSize]="10">
+          </mat-paginator>
+        </div>
       </div>
     </div>
   </mat-card>
