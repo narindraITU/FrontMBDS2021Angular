@@ -7,6 +7,7 @@ import {EditEleveComponent} from "../edit-eleve/edit-eleve.component";
 import {PageEvent} from "@angular/material/paginator";
 import {DashboardService} from "../../shared/HttpServices/dashboard.service";
 import {AuthService} from "../../shared/HttpServices/auth.service";
+import {DescriElevesComponent} from "../descri-eleves/descri-eleves.component";
 
 @Component({
   selector: 'app-liste-eleves',
@@ -64,6 +65,7 @@ export class ListeElevesComponent implements OnInit {
     this.elevesServices.delete(id).subscribe((data) => {
       this.messagingService.openSnackBar(data.message, 1500);
       spinner.close();
+      this.dashboardService.reloadCounts();
       this.loadData();
     }, error => {
       this.messagingService.openSnackBar("Une erreur est survenue au niveau du serveur", 1500);
@@ -103,5 +105,15 @@ export class ListeElevesComponent implements OnInit {
       console.log($event.pageIndex);
       this.page = $event.pageIndex + 1;
       this.loadData();
+  }
+
+  more(eleve: Eleves) {
+    const listdialog = this.matdialog.open<DescriElevesComponent>(DescriElevesComponent, {
+      width: '100%',
+      height: '500px',
+      data: {
+        eleve
+      }
+    });
   }
 }

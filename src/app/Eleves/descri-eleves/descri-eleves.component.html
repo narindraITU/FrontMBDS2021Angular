@@ -1,0 +1,20 @@
+<h1 class="header">
+    Liste des devoirs de {{this.eleve.nom}} {{this.eleve.prenom}}
+</h1>
+<div class="bottom">
+  <div class="row">
+    <div class="col-md-6" *ngFor="let assignment of liste">
+      <app-single-assignment (rendre)="rendre($event)" [assignment]="assignment"></app-single-assignment>
+    </div>
+    <div class="col-md-12">
+      <div class="actions">
+        <mat-paginator
+          (page)="updatePage($event)"
+          [length]="nombreReponses"
+          [pageSize]="10">
+        </mat-paginator>
+        <button [mat-dialog-close]="" color="accent" mat-stroked-button>Fermer</button>
+      </div>
+    </div>
+  </div>
+</div>

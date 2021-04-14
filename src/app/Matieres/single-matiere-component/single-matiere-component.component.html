@@ -14,14 +14,6 @@
             delete
           </mat-icon>
         </div>
-        <div
-          class="square-button"
-          *ngIf="this.authService.isAdmin()"
-          (click)="onEdit.emit(matiere._id)" style="background: forestgreen">
-          <mat-icon>
-            mode_edit
-          </mat-icon>
-        </div>
       </div>
       <div class="details">
         <h1>
