@@ -7,13 +7,13 @@
     <li>Le lazy loading permet de ne charger que les composants que l'utilisateur a besoin d'afficher</li>
     <li>La référence au lazy loading est expliqué dans cette page https://angular.io/guide/lazy-loading-ngmodules</li>
     <li>Pour pouvoir charger un composant un lazy loading quand on accède à une route , on utilise loadChildren comme dans app/app-routing.module.ts ligne 12 ou 20 : 
-      ```
+    
       {
           path: 'auth',
           canLoad: [AuthModuleGuard],
           loadChildren: () => import('./auth/auth.module').then(data => data.AuthModule),
       }
-      ```
+<hr>
     <li>Voici la liste des modules qu'on a utilisé pour cette application : 
       <ul>
         <li>Assignments pour les devoirs <strong>(app/assignments/assignments.module.ts)</strong> avec ses routes <strong>(app/assignments/assignments-routing.module.ts)</strong></li>
