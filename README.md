@@ -1,27 +1,43 @@
-# Assignment
+<h1>Assignment App by Mathias et Narindra - section frontend</h1>
+<strong>url : https://frontmbds2021angular.herokuapp.com/</strong>
+<hr>
+  <h2>Décomposition modulaire de l'application</h2>
+  <ul>
+    <li>L'application a été décomposée en plusieurs sous-modules pour pouvoir effectuer un lazy loading</li>
+    <li>Le lazy loading permet de ne charger que les composants que l'utilisateur a besoin d'afficher</li>
+    <li>La référence au lazy loading est expliqué dans cette page https://angular.io/guide/lazy-loading-ngmodules</li>
+    <li>Pour pouvoir charger un composant un lazy loading quand on accède à une route , on utilise loadChildren comme dans app/app-routing.module.ts ligne 12 ou 20 : 
+      <div>
+      {
+          path: 'auth',
+          canLoad: [AuthModuleGuard],
+          loadChildren: () => import('./auth/auth.module').then(data => data.AuthModule),
+      }
+      </div>
+    <li>Voici la liste des modules qu'on a utilisé pour cette application : 
+      <ul>
+        <li>Assignments pour les devoirs <strong>(app/assignments/assignments.module.ts)</strong> avec ses routes <strong>(app/assignments/assignments-routing.module.ts)</strong></li>
+        <li>Dashboard pour le tableau de bord <strong>(app/dashboard/dashboard.module.ts)</strong> avec ses routes <strong>(app/dashboard/dashboard-routing.module.ts)</strong></li>
+        <li>Eleves pour la gestion des élèves <strong>(app/Eleves/eleves.module.ts)</strong> avec ses routes <strong>(app/Eleves/eleves-routing.module.ts)</strong></li>
+        <li>Matières pour la gestion des Matières <strong>(app/Matieres/matieres.module.ts)</strong> avec ses routes <strong>(app/Matieres/matieres-routing.module.ts)</strong></li>
+      </ul>
+    </li>
+  </ul>
+<hr>
+<h2>Login et inscription</h2>
+<ul>
+  <li>On a utilisé des tokens jwt venant de Nodejs suivant ce tuto que vous avez proposé https://www.freecodecamp.org/news/securing-node-js-restful-apis-with-json-web-tokens-9f811a92bb52/</li>
+  <li>On a utilisé des routeGuard côté angular pour bloquer l'accès à certaines pages :
+    <ul>
+      <li>Les route guard ce sont des services Angular qui permettent d'éviter qu'un utilisateur arrive sur une route sans autorisation</li>
+      <li>On a créé deux route guard : 
+        <ul>
+          <li>Admin route guard (app/shared/Guards/AdminGuard) afin</li>
+          <li></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.0.
-
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+  <li></li>
+</ul>
