@@ -18,7 +18,8 @@ export class MessagingService {
     return this.dialog.open(SpinnerComponent, {
       width: '250px',
       height: '250px',
-      panelClass: 'transparent-bck'
+      panelClass: 'transparent-bck',
+      disableClose: true,
     });
   }
 }
