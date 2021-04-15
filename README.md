@@ -1,9 +1,14 @@
 <h1>Assignment App by Mathias et Narindra - section frontend</h1>
 <strong>url : https://frontmbds2021angular.herokuapp.com/</strong>
 <hr>
+    <p>Pour lancer il suffit de faire npm install puis ng serve 
+     compte de test : nouveauCompte2021 - test</p>
+     <p>La vidéo de démo se trouve dans app/demo_angular.mkv</p>
+<hr>
 <h3>Fonctionnalités clés</h3>
 <ul>
   <li>Ajout de gestion de login et de password à l'aide de Json Web Tokens (JWT) avec collection d'utilisateurs au niveau du backend</li>
+  <li>Suppression - ajout et modification des assignments</li>
   <li>Une propriété remarque (en wysiwig https://github.com/sibiraj-s/ngx-editor), la note , la matière ( mapping grâce à une collection mongo Matiere ) , l'élève ( mapping grâce à une collection mongo Eleves ) ont été ajoutés aux assignments</li>
   <li>Une gestion des matières (création , suppression et liste des matières ) , avec upload de l'image du professeur ( grâce à https://www.npmjs.com/package/ngp-image-picker et le type formData pour envoyer des fichiers via http) et choix de l'icone de la matière (grâce à https://www.npmjs.com/package/ngx-icon-picker)</li>
   <li>Une gestion des élèves ( création , suppression et édition des élèves)</li>

@@ -60,7 +60,7 @@ export class EditAssignmentComponent implements OnInit {
         this.formulaire.controls.nom.setValue(this.assignment.nom);
         this.formulaire.controls.matiere.setValue(this.assignment.matiere._id);
         this.formulaire.controls.eleve.setValue(this.assignment.eleve._id);
-        this.formulaire.controls.note.setValue("" + this.assignment.note);
+        this.formulaire.controls.note.setValue(this.assignment.note ? this.assignment.note : "");
         this.formulaire.controls.note.valueChanges.subscribe(data => {
           console.log(this.formulaire.controls.note.errors);
         });
