@@ -103,3 +103,21 @@
   <li>Pour ce qui est du tableau de bord , on a juste utilisé la librairie ngx-charts (https://swimlane.github.io/ngx-charts/#/ngx-charts/bar-vertical)</li>
   <li>Pour les liens des exemples qu'on a utilisé afin de créer notre dashboard , on les a déja tous cités au début de ce document.</li>
 </ul>
+<hr>
+<h2>Les formControl et les formGroup (https://angular.io/guide/reactive-forms)</h2>
+<ul>
+  <li>Pour la validation de nos formulaires on a utilisé les formControl et les formGroup au niveau du composant afin de faciliter l'affichage des messages d'erreur et le blocage du bouton valider en cas d'informations manquantes</li>
+  <li>Pour pouvoir utiliser les formGroup on doit importer le module ReactiveFormsModule</li>
+  <li>Les formGroup sont comme des groupes de formulaires virtuels qu'on donne à nos formulaires</li>
+  <li>un FormGroup est composé de plusieurs FormControl (exemple dans app/Matieres/liste-matiere/liste-matiere.component.ts ligne 30 )</li>
+  
+    formulaire: FormGroup = new FormGroup({
+      nomProf: new FormControl('',Validators.required),
+      nomMatiere: new FormControl('',Validators.required),
+      icone: new FormControl('warning',Validators.required),
+      image: new FormControl(null,Validators.required),
+    });   
+<hr>
+  <li>Un FormControl est instancié avec sa valeur par défaut et avec une liste ou un validateur qui génèrera les messages d'erreur après</li>
+  <li>puis on lie le formGroup au composant html form et les formControl avec les composants input au niveau de l'affichage (exemple : app/Matieres/liste-matiere/liste-matiere.component.html ligne 5)</li>
+</ul>
