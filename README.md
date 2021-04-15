@@ -34,7 +34,7 @@
       <li>On a créé deux routes guard : </li>
         <li>Structure des route guard 
         <ul>
-          <li>Les routes guard sont composé comme ci : 
+          <li>Les routes guard sont composé comme ci : </li>
           ```
            export class AdminGuard implements CanActivate{
              constructor(private readonly authService: AuthService,
@@ -50,7 +50,6 @@
             <li>dans canActivate on définit la règle qui va permettre à l'utilisateur d'accéder à la route protégée</li>
             <li>et on redirige vers la page souhaitée quand l'utilisateur n'a pas accès.</li>
            </ul>
-          </li>
           <li>Admin route guard (app/shared/Guards/AdminGuard) afin de bloquer les routes qui ne peuvent être vu que par l'administrateur</li>
           <li></li>
         </ul></li>
