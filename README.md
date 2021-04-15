@@ -106,7 +106,7 @@
 <h2>Tableau de bord</h2>
 <ul>
   <li>Pour ce qui est du tableau de bord , on a juste utilisé la librairie ngx-charts (https://swimlane.github.io/ngx-charts/#/ngx-charts/bar-vertical)</li>
-  <li>Pour les liens des exemples qu'on a utilisé afin de créer notre dashboard , on les a déja tous cités au début de ce document.</li>
+  <li>Pour les liens des exemples qu'on a utilisé afin de créer notre dashboard , on les a déja tous cités au début de ce document. Le challenge a été de transformer le format des données venant du backend </li>
 </ul>
 <hr>
 <h2>Les formControl et les formGroup (https://angular.io/guide/reactive-forms)</h2>
