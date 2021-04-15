@@ -53,6 +53,7 @@ export class AssignmentsService {
     const urlPagination = Configurations.baseURI + this.suffix;
     return this.httpClient.get<Object>(urlPagination,{
       params: {
+        rendu: "" + isRendu,
         matieres: matieres.length > 0 ? matieres.map(value => value._id).join('|'): null,
         eleves: eleves.length > 0 ? eleves.map(value => value._id).join('|'): null,
       }

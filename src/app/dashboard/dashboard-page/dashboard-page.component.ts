@@ -90,6 +90,7 @@ export class DashboardPageComponent implements OnInit {
   }
   loadAssignmentsData(){
     this.dataAssignments.days.isLoading = true;
+    const loader = this.messagingService.createSpinner();
     this.dashboardService.statsAssignments().subscribe(data => {
       const series = [];
       series.push({
@@ -148,10 +149,12 @@ export class DashboardPageComponent implements OnInit {
         name: value._id.dateCreated,
         value: value.count,
       })));
+      loader.close();
     }, error => {
       console.log(error);
       this.dataAssignments.days.isLoading = false;
-      this.messagingService.openSnackBar("Le nombre de devoirs créés par jour n'a pas pu être affiché",3000);
+      this.messagingService.openSnackBar("Le nombre de devoirs créés n'a pas pu être affiché",3000);
+      loader.close();
     });
   }
   ngOnInit(): void {

@@ -226,13 +226,13 @@ export class AssigmentsComponent implements OnInit {
     const index = this.selectedMatieres.indexOf(matiere);
     if (index >= 0) {
       this.selectedMatieres.splice(index, 1);
+      this.matiere_control.patchValue('');
     }
   }
   selected($event: MatAutocompleteSelectedEvent) {
     console.log($event.option);
     this.selectedMatieres.push(this.matieres.filter(value => value._id === $event.option.value)[0]);
     this.input.nativeElement.value = '';
-    this.matiere_control.setValue(null);
   }
 
   add($event: MatChipInputEvent) {

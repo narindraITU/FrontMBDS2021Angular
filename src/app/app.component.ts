@@ -61,8 +61,10 @@ export class AppComponent implements OnInit{
         return this.authService.isLoggedIn();
   }
 
-  goTo(path: string[]) {
-    this.router.navigate(path);
+  async goTo(path: string[]) {
+    const spinner = await this.messagingService.createSpinner();
+    await this.router.navigate(path);
+    spinner.close();
   }
   goToPath(path: string){
       this.router.navigateByUrl(path);
